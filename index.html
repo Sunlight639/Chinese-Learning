@@ -1,0 +1,3562 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Chinese Learning</title>
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+
+      --success: #16a34a;
+      --success-bg: #ecfdf3;
+
+      --danger: #dc2626;
+      --danger-bg: #fef2f2;
+
+      --warning: #d97706;
+      --warning-bg: #fffbeb;
+
+      --text: #111827;
+      --muted: #6b7280;
+
+      --bg: #f3f4f6;
+      --card: #ffffff;
+      --border: #e5e7eb;
+
+      --radius: 18px;
+      --shadow:
+        0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+      color: var(--text);
+      background:
+        linear-gradient(
+          135deg,
+          #eef4ff 0%,
+          #f8fafc 50%,
+          #f1f5f9 100%
+        );
+
+      min-height: 100vh;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 16px 60px;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .app-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .logo {
+      width: 58px;
+      height: 58px;
+
+      margin: 0 auto 12px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 16px;
+
+      color: white;
+      background:
+        linear-gradient(
+          135deg,
+          #2563eb,
+          #7c3aed
+        );
+
+      font-size: 27px;
+      font-weight: 800;
+
+      box-shadow:
+        0 12px 25px rgba(37, 99, 235, 0.25);
+    }
+
+    .app-title {
+      margin: 0;
+
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .app-subtitle {
+      margin: 7px 0 0;
+
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* =========================
+       SCREEN
+    ========================= */
+
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    /* =========================
+       CARD
+    ========================= */
+
+    .card {
+      background: var(--card);
+
+      border: 1px solid rgba(229, 231, 235, 0.9);
+
+      border-radius: var(--radius);
+
+      box-shadow: var(--shadow);
+
+      padding: 28px;
+    }
+
+    /* =========================
+       START SCREEN
+    ========================= */
+
+    .start-card {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      margin: 0 0 8px;
+
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .section-description {
+      margin: 0 0 25px;
+
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+
+      margin-bottom: 8px;
+
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    select,
+    input[type="text"] {
+      width: 100%;
+
+      min-height: 50px;
+
+      padding: 12px 14px;
+
+      border: 1px solid #d1d5db;
+
+      border-radius: 12px;
+
+      background: white;
+
+      color: var(--text);
+
+      outline: none;
+
+      transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+    }
+
+    select:focus,
+    input[type="text"]:focus {
+      border-color: var(--primary);
+
+      box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    .level-info {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      margin-top: 9px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+    }
+
+    .start-button {
+      width: 100%;
+
+      min-height: 52px;
+
+      margin-top: 8px;
+
+      border: none;
+      border-radius: 13px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          #4f46e5
+        );
+
+      color: white;
+
+      font-weight: 800;
+      font-size: 16px;
+
+      transition:
+        transform 0.15s,
+        box-shadow 0.15s;
+    }
+
+    .start-button:hover {
+      transform: translateY(-1px);
+
+      box-shadow:
+        0 10px 22px rgba(37, 99, 235, 0.25);
+    }
+
+    .start-button:disabled {
+      cursor: not-allowed;
+
+      opacity: 0.55;
+
+      transform: none;
+
+      box-shadow: none;
+    }
+
+    /* =========================
+       LOADING
+    ========================= */
+
+    .loading {
+      display: none;
+
+      text-align: center;
+
+      padding: 40px 20px;
+    }
+
+    .loading.active {
+      display: block;
+    }
+
+    .spinner {
+      width: 42px;
+      height: 42px;
+
+      margin: 0 auto 15px;
+
+      border: 4px solid #dbeafe;
+
+      border-top-color: var(--primary);
+
+      border-radius: 50%;
+
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* =========================
+       TEST HEADER
+    ========================= */
+
+    .test-header {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 16px;
+
+      margin-bottom: 14px;
+    }
+
+    .test-level {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .test-progress {
+      color: var(--muted);
+
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+
+      margin-bottom: 24px;
+
+      overflow: hidden;
+
+      border-radius: 999px;
+
+      background: #e5e7eb;
+    }
+
+    .progress-value {
+      height: 100%;
+
+      border-radius: inherit;
+
+      background:
+        linear-gradient(
+          90deg,
+          #2563eb,
+          #7c3aed
+        );
+
+      transition: width 0.3s ease;
+    }
+
+    /* =========================
+       QUESTION CARD
+    ========================= */
+
+    .question-card {
+      padding: 32px;
+    }
+
+    .shown-badge {
+      display: inline-flex;
+
+      align-items: center;
+
+      min-height: 30px;
+
+      padding: 5px 11px;
+
+      margin-bottom: 25px;
+
+      border-radius: 999px;
+
+      color: #1d4ed8;
+
+      background: #eff6ff;
+
+      font-size: 12px;
+      font-weight: 800;
+
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .shown-word {
+      min-height: 100px;
+
+      margin-bottom: 28px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f8fafc,
+          #eef2ff
+        );
+
+      border: 1px solid #e2e8f0;
+
+      text-align: center;
+
+      font-size: 40px;
+
+      font-weight: 800;
+
+      line-height: 1.25;
+
+      word-break: break-word;
+    }
+
+    .answer-area {
+      display: grid;
+
+      grid-template-columns: 1fr;
+
+      gap: 18px;
+    }
+
+    .answer-group {
+      position: relative;
+    }
+
+    .answer-label {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 8px;
+
+      font-size: 14px;
+
+      font-weight: 750;
+    }
+
+    .answer-label-required {
+      color: var(--danger);
+
+      font-size: 11px;
+
+      font-weight: 700;
+    }
+
+    .answer-input {
+      min-height: 54px;
+
+      font-size: 16px;
+    }
+
+    .answer-input.input-correct {
+      border-color: var(--success);
+
+      background: var(--success-bg);
+
+      color: #166534;
+    }
+
+    .answer-input.input-wrong {
+      border-color: var(--danger);
+
+      background: var(--danger-bg);
+
+      color: #991b1b;
+    }
+
+    .answer-input:disabled {
+      cursor: default;
+    }
+
+    .confirm-button {
+      width: 100%;
+
+      min-height: 54px;
+
+      margin-top: 26px;
+
+      border: none;
+
+      border-radius: 13px;
+
+      color: white;
+
+      background: var(--primary);
+
+      font-weight: 800;
+
+      font-size: 16px;
+
+      transition:
+        background 0.2s,
+        transform 0.15s;
+    }
+
+    .confirm-button:hover {
+      background: var(--primary-dark);
+
+      transform: translateY(-1px);
+    }
+
+    .confirm-button:disabled {
+      cursor: not-allowed;
+
+      opacity: 0.6;
+
+      transform: none;
+    }
+
+    /* =========================
+       FEEDBACK
+    ========================= */
+
+    .feedback {
+      display: none;
+
+      margin-top: 18px;
+
+      padding: 14px 16px;
+
+      border-radius: 12px;
+
+      line-height: 1.6;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .feedback.correct {
+      color: #166534;
+
+      background: var(--success-bg);
+
+      border: 1px solid #bbf7d0;
+    }
+
+    .feedback.wrong {
+      color: #991b1b;
+
+      background: var(--danger-bg);
+
+      border: 1px solid #fecaca;
+    }
+
+    /* =========================
+       RESULT
+    ========================= */
+
+    .result-card {
+      text-align: center;
+
+      margin-bottom: 25px;
+    }
+
+    .result-icon {
+      width: 74px;
+      height: 74px;
+
+      margin: 0 auto 16px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      color: #166534;
+
+      background: var(--success-bg);
+
+      font-size: 34px;
+    }
+
+    .result-title {
+      margin: 0 0 8px;
+
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .result-score {
+      margin: 12px 0;
+
+      font-size: 48px;
+
+      font-weight: 900;
+
+      letter-spacing: -1px;
+    }
+
+    .result-meta {
+      display: flex;
+
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      gap: 10px;
+
+      margin-top: 15px;
+    }
+
+    .result-meta-item {
+      padding: 9px 13px;
+
+      border-radius: 10px;
+
+      color: #374151;
+
+      background: #f3f4f6;
+
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* =========================
+       REVIEW
+    ========================= */
+
+    .review-title {
+      margin: 0 0 16px;
+
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .review-description {
+      margin: 0 0 20px;
+
+      color: var(--muted);
+
+      line-height: 1.6;
+    }
+
+    .review-list {
+      display: grid;
+
+      gap: 16px;
+    }
+
+    .review-card {
+      overflow: hidden;
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+
+      background: white;
+    }
+
+    .review-card-header {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 14px 16px;
+
+      background: #f8fafc;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .review-number {
+      font-weight: 800;
+
+      font-size: 14px;
+    }
+
+    .review-status {
+      padding: 5px 9px;
+
+      border-radius: 999px;
+
+      font-size: 11px;
+
+      font-weight: 800;
+    }
+
+    .review-status.correct {
+      color: #166534;
+
+      background: #dcfce7;
+    }
+
+    .review-status.wrong {
+      color: #991b1b;
+
+      background: #fee2e2;
+    }
+
+    .review-content {
+      padding: 17px;
+    }
+
+    .review-shown {
+      margin-bottom: 15px;
+
+      padding: 13px 14px;
+
+      border-radius: 11px;
+
+      background: #f8fafc;
+
+      border: 1px solid #e2e8f0;
+    }
+
+    .review-shown-label {
+      margin-bottom: 4px;
+
+      color: var(--muted);
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      text-transform: uppercase;
+    }
+
+    .review-shown-value {
+      font-size: 21px;
+
+      font-weight: 800;
+
+      word-break: break-word;
+    }
+
+    .review-answer {
+      margin-top: 12px;
+
+      padding: 13px 14px;
+
+      border-radius: 11px;
+
+      border: 1px solid;
+    }
+
+    .review-answer.correct {
+      color: #166534;
+
+      background: var(--success-bg);
+
+      border-color: #bbf7d0;
+    }
+
+    .review-answer.wrong {
+      color: #991b1b;
+
+      background: var(--danger-bg);
+
+      border-color: #fecaca;
+    }
+
+    .review-answer-label {
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 10px;
+
+      margin-bottom: 7px;
+
+      font-size: 12px;
+
+      font-weight: 800;
+    }
+
+    .review-user-answer {
+      font-size: 16px;
+
+      font-weight: 700;
+
+      word-break: break-word;
+    }
+
+    .review-correct-answer {
+      margin-top: 7px;
+
+      color: #374151;
+
+      font-size: 13px;
+
+      line-height: 1.5;
+    }
+
+    .review-correct-answer strong {
+      color: #111827;
+    }
+
+    .restart-button {
+      width: 100%;
+
+      min-height: 52px;
+
+      margin-top: 25px;
+
+      border: none;
+
+      border-radius: 13px;
+
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #2563eb,
+          #4f46e5
+        );
+
+      font-weight: 800;
+
+      font-size: 16px;
+    }
+
+    /* =========================
+       ERROR
+    ========================= */
+
+    .error-box {
+      display: none;
+
+      margin-bottom: 18px;
+
+      padding: 13px 15px;
+
+      border-radius: 12px;
+
+      color: #991b1b;
+
+      background: var(--danger-bg);
+
+      border: 1px solid #fecaca;
+
+      line-height: 1.5;
+
+      font-size: 14px;
+    }
+
+    .error-box.show {
+      display: block;
+    }
+
+    /* =========================
+       EMPTY
+    ========================= */
+
+    .empty-state {
+      text-align: center;
+
+      padding: 35px 15px;
+
+      color: var(--muted);
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 640px) {
+      .app {
+        padding:
+          18px
+          12px
+          40px;
+      }
+
+      .app-title {
+        font-size: 26px;
+      }
+
+      .card {
+        padding: 21px 17px;
+      }
+
+      .question-card {
+        padding: 21px 17px;
+      }
+
+      .shown-word {
+        min-height: 90px;
+
+        font-size: 32px;
+      }
+
+      .result-score {
+        font-size: 42px;
+      }
+
+      .test-header {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="app">
+
+    <!-- =====================
+         HEADER
+    ====================== -->
+
+    <header class="app-header">
+
+      <div class="logo">
+        中
+      </div>
+
+      <h1 class="app-title">
+        Chinese Learning
+      </h1>
+
+      <p class="app-subtitle">
+        Vocabulary Practice
+      </p>
+
+    </header>
+
+
+    <!-- =====================
+         GLOBAL ERROR
+    ====================== -->
+
+    <div
+      id="errorBox"
+      class="error-box"
+    ></div>
+
+
+    <!-- =====================
+         START SCREEN
+    ====================== -->
+
+    <section
+      id="startScreen"
+      class="screen active"
+    >
+
+      <div class="card start-card">
+
+        <h2 class="section-title">
+          Bắt đầu kiểm tra
+        </h2>
+
+        <p class="section-description">
+          Chọn cấp độ và số lượng từ muốn kiểm tra.
+          Mỗi câu sẽ hiển thị một phần và yêu cầu
+          bạn tự nhớ hai phần còn lại.
+        </p>
+
+
+        <div class="form-group">
+
+          <label
+            class="form-label"
+            for="levelSelect"
+          >
+            Cấp độ
+          </label>
+
+          <select id="levelSelect">
+            <option value="">
+              Đang tải cấp độ...
+            </option>
+          </select>
+
+          <div class="level-info">
+
+            <span>
+              Số từ có sẵn
+            </span>
+
+            <strong id="availableCount">
+              0
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label
+            class="form-label"
+            for="countSelect"
+          >
+            Số lượng từ kiểm tra
+          </label>
+
+          <select id="countSelect">
+            <option value="">
+              Chọn số lượng
+            </option>
+          </select>
+
+        </div>
+
+
+        <button
+          id="startButton"
+          class="start-button"
+          disabled
+        >
+          BẮT ĐẦU
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================
+         LOADING
+    ====================== -->
+
+    <div
+      id="loading"
+      class="loading"
+    >
+
+      <div class="spinner"></div>
+
+      <div id="loadingText">
+        Đang tải...
+      </div>
+
+    </div>
+
+
+    <!-- =====================
+         TEST SCREEN
+    ====================== -->
+
+    <section
+      id="testScreen"
+      class="screen"
+    >
+
+      <div class="test-header">
+
+        <div
+          id="testLevel"
+          class="test-level"
+        >
+          HSK0
+        </div>
+
+        <div
+          id="testProgress"
+          class="test-progress"
+        >
+          1 / 20
+        </div>
+
+      </div>
+
+
+      <div class="progress-bar">
+
+        <div
+          id="progressValue"
+          class="progress-value"
+          style="width: 5%;"
+        ></div>
+
+      </div>
+
+
+      <div class="card question-card">
+
+        <div
+          id="shownBadge"
+          class="shown-badge"
+        >
+          Đang hiển thị
+        </div>
+
+
+        <div
+          id="shownWord"
+          class="shown-word"
+        >
+          你好
+        </div>
+
+
+        <div
+          id="answerArea"
+          class="answer-area"
+        >
+        </div>
+
+
+        <button
+          id="confirmButton"
+          class="confirm-button"
+        >
+          XÁC NHẬN
+        </button>
+
+
+        <div
+          id="feedback"
+          class="feedback"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================
+         RESULT SCREEN
+    ====================== -->
+
+    <section
+      id="resultScreen"
+      class="screen"
+    >
+
+      <div class="card result-card">
+
+        <div class="result-icon">
+          ✓
+        </div>
+
+        <h2 class="result-title">
+          Hoàn thành!
+        </h2>
+
+        <div
+          id="resultScore"
+          class="result-score"
+        >
+          0/0
+        </div>
+
+        <div
+          id="resultMeta"
+          class="result-meta"
+        ></div>
+
+      </div>
+
+
+      <div class="card">
+
+        <h2 class="review-title">
+          Kiểm tra lại từ đã làm
+        </h2>
+
+        <p class="review-description">
+          Các phần màu đỏ là những phần bạn đã
+          nhập sai. Hệ thống giữ nguyên phần đã
+          ẩn ở từng câu để bạn nhớ lại chính xác
+          từ nào mình đã phải tự điền.
+        </p>
+
+
+        <div
+          id="reviewList"
+          class="review-list"
+        ></div>
+
+
+        <button
+          id="restartButton"
+          class="restart-button"
+        >
+          LÀM BÀI MỚI
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    /************************************************
+     * CONFIG
+     ************************************************/
+
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycbw2JMe9gb_5bFgWxlspBkQ2KLb-DRi07atMsG2BY3LETBMLXmBz_yYrvXjEqDkkmxoF/exec";
+
+
+    /************************************************
+     * STATE
+     ************************************************/
+
+    const state = {
+
+      levels: [],
+
+      currentLevel: "",
+
+      total: 0,
+
+      words: [],
+
+      currentIndex: 0,
+
+      correctCount: 0,
+
+      testId: null,
+
+      startedAt: null,
+
+      currentQuestion: null,
+
+      results: [],
+
+      confirming: false
+
+    };
+
+
+    /************************************************
+     * DOM
+     ************************************************/
+
+    const $ = (id) =>
+      document.getElementById(id);
+
+
+    /************************************************
+     * INIT
+     ************************************************/
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      init
+    );
+
+
+    async function init() {
+
+      bindEvents();
+
+      await loadLevels();
+
+    }
+
+
+    /************************************************
+     * EVENTS
+     ************************************************/
+
+    function bindEvents() {
+
+      $("levelSelect")
+        .addEventListener(
+          "change",
+          handleLevelChange
+        );
+
+
+      $("startButton")
+        .addEventListener(
+          "click",
+          startTest
+        );
+
+
+      $("confirmButton")
+        .addEventListener(
+          "click",
+          confirmAnswer
+        );
+
+
+      $("restartButton")
+        .addEventListener(
+          "click",
+          resetToStart
+        );
+
+    }
+
+
+    /************************************************
+     * API GET
+     *
+     * Apps Script doGet
+     ************************************************/
+
+    async function apiGet(params = {}) {
+
+      const url =
+        new URL(API_URL);
+
+      Object.entries(params)
+        .forEach(([key, value]) => {
+
+          if (
+            value !== undefined &&
+            value !== null
+          ) {
+
+            url.searchParams.set(
+              key,
+              value
+            );
+
+          }
+
+        });
+
+
+      const response =
+        await fetch(
+          url.toString(),
+          {
+            method: "GET",
+            redirect: "follow",
+            cache: "no-store"
+          }
+        );
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          `API GET lỗi HTTP ${response.status}`
+        );
+
+      }
+
+
+      const text =
+        await response.text();
+
+
+      try {
+
+        return JSON.parse(text);
+
+      } catch (error) {
+
+        throw new Error(
+          "Apps Script trả về dữ liệu không hợp lệ."
+        );
+
+      }
+
+    }
+
+
+    /************************************************
+     * API POST
+     *
+     * QUAN TRỌNG:
+     *
+     * Dùng text/plain để tránh preflight CORS.
+     *
+     * Apps Script hiện tại đã có:
+     * parseRequestData_()
+     *
+     * để JSON.parse(e.postData.contents).
+     ************************************************/
+
+    async function apiPost(data) {
+
+      const response =
+        await fetch(
+          API_URL,
+          {
+            method: "POST",
+
+            redirect: "follow",
+
+            cache: "no-store",
+
+            headers: {
+              "Content-Type":
+                "text/plain;charset=utf-8"
+            },
+
+            body:
+              JSON.stringify(data)
+          }
+        );
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          `API POST lỗi HTTP ${response.status}`
+        );
+
+      }
+
+
+      const text =
+        await response.text();
+
+
+      try {
+
+        return JSON.parse(text);
+
+      } catch (error) {
+
+        throw new Error(
+          "Apps Script trả về dữ liệu không hợp lệ."
+        );
+
+      }
+
+    }
+
+
+    /************************************************
+     * LOAD LEVELS
+     ************************************************/
+
+    async function loadLevels() {
+
+      showLoading(
+        "Đang tải danh sách cấp độ..."
+      );
+
+
+      try {
+
+        const response =
+          await apiGet({
+            action: "levels"
+          });
+
+
+        if (!response.success) {
+
+          throw new Error(
+            response.error ||
+            "Không thể tải cấp độ."
+          );
+
+        }
+
+
+        state.levels =
+          Array.isArray(response.levels)
+            ? response.levels
+            : [];
+
+
+        renderLevels();
+
+
+        hideLoading();
+
+
+      } catch (error) {
+
+        hideLoading();
+
+        showError(
+          "Không thể kết nối Google Sheet: " +
+          error.message
+        );
+
+      }
+
+    }
+
+
+    /************************************************
+     * RENDER LEVELS
+     ************************************************/
+
+    function renderLevels() {
+
+      const select =
+        $("levelSelect");
+
+
+      select.innerHTML = "";
+
+
+      if (
+        state.levels.length === 0
+      ) {
+
+        const option =
+          document.createElement(
+            "option"
+          );
+
+        option.value = "";
+
+        option.textContent =
+          "Chưa có cấp độ";
+
+        select.appendChild(option);
+
+        $("availableCount")
+          .textContent = "0";
+
+        $("startButton")
+          .disabled = true;
+
+        updateCountOptions(0);
+
+        return;
+
+      }
+
+
+      const placeholder =
+        document.createElement(
+          "option"
+        );
+
+      placeholder.value = "";
+
+      placeholder.textContent =
+        "Chọn cấp độ";
+
+      select.appendChild(
+        placeholder
+      );
+
+
+      state.levels.forEach(
+        (item) => {
+
+          const option =
+            document.createElement(
+              "option"
+            );
+
+          option.value =
+            item.level;
+
+          option.textContent =
+            item.level;
+
+          select.appendChild(
+            option
+          );
+
+        }
+      );
+
+
+      select.value =
+        state.currentLevel || "";
+
+
+      if (state.currentLevel) {
+
+        handleLevelChange();
+
+      }
+
+    }
+
+
+    /************************************************
+     * LEVEL CHANGE
+     ************************************************/
+
+    function handleLevelChange() {
+
+      const level =
+        $("levelSelect").value;
+
+
+      state.currentLevel =
+        level;
+
+
+      const selected =
+        state.levels.find(
+          item =>
+            item.level === level
+        );
+
+
+      const count =
+        selected
+          ? Number(selected.wordCount) || 0
+          : 0;
+
+
+      $("availableCount")
+        .textContent = count;
+
+
+      updateCountOptions(count);
+
+    }
+
+
+    /************************************************
+     * COUNT OPTIONS
+     ************************************************/
+
+    function updateCountOptions(
+      available
+    ) {
+
+      const select =
+        $("countSelect");
+
+
+      select.innerHTML = "";
+
+
+      const placeholder =
+        document.createElement(
+          "option"
+        );
+
+      placeholder.value = "";
+
+      placeholder.textContent =
+        available > 0
+          ? "Chọn số lượng"
+          : "Không có từ";
+
+      select.appendChild(
+        placeholder
+      );
+
+
+      if (available <= 0) {
+
+        $("startButton")
+          .disabled = true;
+
+        return;
+
+      }
+
+
+      const options = [];
+
+
+      /*
+       * Các mốc phổ biến.
+       */
+
+      [
+        5,
+        10,
+        20,
+        30,
+        50,
+        100
+      ].forEach(
+        number => {
+
+          if (
+            number <= available
+          ) {
+
+            options.push(number);
+
+          }
+
+        }
+      );
+
+
+      /*
+       * Nếu số lượng không nằm
+       * trong các mốc trên thì
+       * thêm số lượng tối đa.
+       */
+
+      if (
+        !options.includes(available)
+      ) {
+
+        options.push(
+          available
+        );
+
+      }
+
+
+      options
+        .sort(
+          (a, b) => a - b
+        )
+        .forEach(
+          number => {
+
+            const option =
+              document.createElement(
+                "option"
+              );
+
+            option.value =
+              number;
+
+            option.textContent =
+              number + " từ";
+
+            select.appendChild(
+              option
+            );
+
+          }
+        );
+
+
+      select.value = "";
+
+
+      $("startButton")
+        .disabled = false;
+
+    }
+
+
+    /************************************************
+     * START TEST
+     ************************************************/
+
+    async function startTest() {
+
+      if (state.confirming) {
+        return;
+      }
+
+
+      const level =
+        $("levelSelect").value;
+
+
+      const total =
+        Number(
+          $("countSelect").value
+        );
+
+
+      if (!level) {
+
+        showError(
+          "Vui lòng chọn cấp độ."
+        );
+
+        return;
+
+      }
+
+
+      if (
+        !Number.isInteger(total) ||
+        total <= 0
+      ) {
+
+        showError(
+          "Vui lòng chọn số lượng từ."
+        );
+
+        return;
+
+      }
+
+
+      clearError();
+
+
+      state.confirming = true;
+
+
+      $("startButton")
+        .disabled = true;
+
+
+      showLoading(
+        "Đang chuẩn bị bài kiểm tra..."
+      );
+
+
+      try {
+
+        /*
+         * 1.
+         * Gọi Apps Script startTest
+         *
+         * Đây là thời điểm bắt đầu
+         * tính Time.
+         */
+
+        const startResponse =
+          await apiPost({
+            action: "startTest",
+            level: level,
+            total: total
+          });
+
+
+        if (
+          !startResponse.success
+        ) {
+
+          throw new Error(
+            startResponse.error ||
+            "Không thể bắt đầu bài kiểm tra."
+          );
+
+        }
+
+
+        /*
+         * 2.
+         * Lưu testId
+         */
+
+        state.testId =
+          startResponse.testId;
+
+
+        state.startedAt =
+          startResponse.startedAt;
+
+
+        state.currentLevel =
+          level;
+
+
+        state.total =
+          total;
+
+
+        /*
+         * 3.
+         * Lấy vocabulary
+         */
+
+        const vocabResponse =
+          await apiGet({
+            action: "vocabulary",
+            level: level
+          });
+
+
+        if (
+          !vocabResponse.success
+        ) {
+
+          throw new Error(
+            vocabResponse.error ||
+            "Không thể tải từ vựng."
+          );
+
+        }
+
+
+        const allWords =
+          Array.isArray(
+            vocabResponse.words
+          )
+            ? vocabResponse.words
+            : [];
+
+
+        if (
+          allWords.length < total
+        ) {
+
+          throw new Error(
+            "Số từ thực tế không đủ để tạo bài kiểm tra."
+          );
+
+        }
+
+
+        /*
+         * 4.
+         * Random và lấy đúng số lượng.
+         */
+
+        state.words =
+          shuffle(
+            [...allWords]
+          ).slice(
+            0,
+            total
+          );
+
+
+        state.currentIndex = 0;
+
+        state.correctCount = 0;
+
+        state.results = [];
+
+        state.currentQuestion =
+          null;
+
+
+        /*
+         * 5.
+         * Chuyển sang TEST
+         */
+
+        hideLoading();
+
+        showScreen(
+          "testScreen"
+        );
+
+
+        renderTestHeader();
+
+        renderQuestion();
+
+
+      } catch (error) {
+
+        hideLoading();
+
+        showError(
+          "Không thể bắt đầu bài kiểm tra: " +
+          error.message
+        );
+
+
+        $("startButton")
+          .disabled = false;
+
+
+      } finally {
+
+        state.confirming = false;
+
+      }
+
+    }
+
+
+    /************************************************
+     * SHUFFLE
+     ************************************************/
+
+    function shuffle(array) {
+
+      for (
+        let i = array.length - 1;
+        i > 0;
+        i--
+      ) {
+
+        const j =
+          Math.floor(
+            Math.random() *
+            (i + 1)
+          );
+
+
+        [
+          array[i],
+          array[j]
+        ] =
+        [
+          array[j],
+          array[i]
+        ];
+
+      }
+
+
+      return array;
+
+    }
+
+
+    /************************************************
+     * RENDER TEST HEADER
+     ************************************************/
+
+    function renderTestHeader() {
+
+      $("testLevel")
+        .textContent =
+        state.currentLevel;
+
+
+      $("testProgress")
+        .textContent =
+        `${state.currentIndex + 1} / ${state.total}`;
+
+
+      const percent =
+        (
+          (state.currentIndex + 1) /
+          state.total
+        ) * 100;
+
+
+      $("progressValue")
+        .style.width =
+        `${percent}%`;
+
+    }
+
+
+    /************************************************
+     * RENDER QUESTION
+     ************************************************/
+
+    function renderQuestion() {
+
+      const word =
+        state.words[
+          state.currentIndex
+        ];
+
+
+      if (!word) {
+
+        finishTest();
+
+        return;
+
+      }
+
+
+      /*
+       * Random 1 trong 3 field
+       * để HIỂN THỊ.
+       *
+       * Hai field còn lại bị ẩn.
+       */
+
+      const shownFields = [
+        "chinese",
+        "pinyin",
+        "english"
+      ];
+
+
+      const shown =
+        shownFields[
+          Math.floor(
+            Math.random() *
+            shownFields.length
+          )
+        ];
+
+
+      const hidden =
+        shownFields.filter(
+          field =>
+            field !== shown
+        );
+
+
+      state.currentQuestion = {
+
+        word: word,
+
+        shown: shown,
+
+        hidden: hidden,
+
+        answers: {},
+
+        correctness: {}
+
+      };
+
+
+      /*
+       * Header
+       */
+
+      renderTestHeader();
+
+
+      /*
+       * Badge
+       */
+
+      $("shownBadge")
+        .textContent =
+        `Đang hiển thị: ${getFieldLabel(shown)}`;
+
+
+      /*
+       * Phần được hiển thị
+       */
+
+      $("shownWord")
+        .textContent =
+        getWordValue(
+          word,
+          shown
+        );
+
+
+      /*
+       * Tạo 2 ô nhập
+       */
+
+      const answerArea =
+        $("answerArea");
+
+
+      answerArea.innerHTML = "";
+
+
+      hidden.forEach(
+        field => {
+
+          const group =
+            document.createElement(
+              "div"
+            );
+
+
+          group.className =
+            "answer-group";
+
+
+          const label =
+            document.createElement(
+              "label"
+            );
+
+
+          label.className =
+            "answer-label";
+
+
+          label.innerHTML = `
+            <span>
+              ${escapeHtml(
+                getFieldLabel(field)
+              )}
+            </span>
+
+            <span class="answer-label-required">
+              BẮT BUỘC
+            </span>
+          `;
+
+
+          const input =
+            document.createElement(
+              "input"
+            );
+
+
+          input.type =
+            "text";
+
+
+          input.className =
+            "answer-input";
+
+
+          input.id =
+            `answer-${field}`;
+
+
+          input.autocomplete =
+            "off";
+
+
+          input.spellcheck =
+            false;
+
+
+          input.placeholder =
+            `Nhập ${getFieldLabel(field)}...`;
+
+
+          /*
+           * Enter = xác nhận
+           */
+
+          input.addEventListener(
+            "keydown",
+            event => {
+
+              if (
+                event.key === "Enter"
+              ) {
+
+                event.preventDefault();
+
+                confirmAnswer();
+
+              }
+
+            }
+          );
+
+
+          group.appendChild(
+            label
+          );
+
+          group.appendChild(
+            input
+          );
+
+
+          answerArea.appendChild(
+            group
+          );
+
+        }
+      );
+
+
+      /*
+       * Reset button
+       */
+
+      $("confirmButton")
+        .disabled = false;
+
+
+      $("confirmButton")
+        .textContent =
+        "XÁC NHẬN";
+
+
+      $("feedback")
+        .className =
+        "feedback";
+
+
+      $("feedback")
+        .innerHTML = "";
+
+
+      /*
+       * Focus ô đầu tiên
+       */
+
+      const firstInput =
+        answerArea.querySelector(
+          "input"
+        );
+
+
+      if (firstInput) {
+
+        setTimeout(
+          () => firstInput.focus(),
+          50
+        );
+
+      }
+
+    }
+
+
+    /************************************************
+     * GET FIELD LABEL
+     ************************************************/
+
+    function getFieldLabel(
+      field
+    ) {
+
+      const labels = {
+
+        chinese:
+          "中文",
+
+        pinyin:
+          "Pinying",
+
+        english:
+          "English"
+
+      };
+
+
+      return labels[field] || field;
+
+    }
+
+
+    /************************************************
+     * GET WORD VALUE
+     ************************************************/
+
+    function getWordValue(
+      word,
+      field
+    ) {
+
+      return String(
+        word[field] || ""
+      );
+
+    }
+
+
+    /************************************************
+     * CONFIRM ANSWER
+     ************************************************/
+
+    function confirmAnswer() {
+
+      if (
+        state.confirming
+      ) {
+
+        return;
+
+      }
+
+
+      const question =
+        state.currentQuestion;
+
+
+      if (!question) {
+
+        return;
+
+      }
+
+
+      /*
+       * Lấy 2 đáp án
+       */
+
+      const answers = {};
+
+
+      let missing = false;
+
+
+      question.hidden.forEach(
+        field => {
+
+          const input =
+            document.getElementById(
+              `answer-${field}`
+            );
+
+
+          const value =
+            input
+              ? input.value.trim()
+              : "";
+
+
+          answers[field] =
+            value;
+
+
+          if (!value) {
+
+            missing = true;
+
+          }
+
+        }
+      );
+
+
+      if (missing) {
+
+        showFeedback(
+          "Vui lòng nhập đủ hai phần trước khi xác nhận.",
+          false
+        );
+
+        return;
+
+      }
+
+
+      /*
+       * Chấm từng phần.
+       */
+
+      const correctness = {};
+
+
+      question.hidden.forEach(
+        field => {
+
+          const correctAnswer =
+            getWordValue(
+              question.word,
+              field
+            );
+
+
+          correctness[field] =
+            checkAnswer(
+              field,
+              answers[field],
+              correctAnswer
+            );
+
+        }
+      );
+
+
+      /*
+       * Câu chỉ đúng khi
+       * CẢ HAI phần đều đúng.
+       */
+
+      const questionCorrect =
+        question.hidden.every(
+          field =>
+            correctness[field] === true
+        );
+
+
+      question.answers =
+        answers;
+
+
+      question.correctness =
+        correctness;
+
+
+      question.questionCorrect =
+        questionCorrect;
+
+
+      /*
+       * Lưu review.
+       */
+
+      state.results.push({
+
+        chinese:
+          question.word.chinese,
+
+        pinyin:
+          question.word.pinyin,
+
+        english:
+          question.word.english,
+
+        shown:
+          question.shown,
+
+        hidden:
+          [...question.hidden],
+
+        answers:
+          {...answers},
+
+        correctness:
+          {...correctness},
+
+        questionCorrect:
+          questionCorrect
+
+      });
+
+
+      if (
+        questionCorrect
+      ) {
+
+        state.correctCount++;
+
+      }
+
+
+      /*
+       * Hiển thị feedback.
+       */
+
+      showQuestionFeedback(
+        question,
+        questionCorrect
+      );
+
+
+      /*
+       * Khóa input.
+       */
+
+      question.hidden.forEach(
+        field => {
+
+          const input =
+            document.getElementById(
+              `answer-${field}`
+            );
+
+
+          if (input) {
+
+            input.disabled = true;
+
+
+            input.classList.add(
+              correctness[field]
+                ? "input-correct"
+                : "input-wrong"
+            );
+
+          }
+
+        }
+      );
+
+
+      $("confirmButton")
+        .disabled = true;
+
+
+      /*
+       * Không cần bấm thêm button.
+       *
+       * Sau khoảng thời gian ngắn,
+       * tự động chuyển câu.
+       */
+
+      setTimeout(
+        () => {
+
+          nextQuestion();
+
+        },
+        1200
+      );
+
+    }
+
+
+    /************************************************
+     * CHECK ANSWER
+     ************************************************/
+
+    function checkAnswer(
+      field,
+      userAnswer,
+      correctAnswer
+    ) {
+
+      if (
+        field === "pinyin"
+      ) {
+
+        return normalizePinyin(
+          userAnswer
+        ) ===
+        normalizePinyin(
+          correctAnswer
+        );
+
+      }
+
+
+      if (
+        field === "english"
+      ) {
+
+        return normalizeEnglish(
+          userAnswer
+        ) ===
+        normalizeEnglish(
+          correctAnswer
+        );
+
+      }
+
+
+      if (
+        field === "chinese"
+      ) {
+
+        return normalizeChinese(
+          userAnswer
+        ) ===
+        normalizeChinese(
+          correctAnswer
+        );
+
+      }
+
+
+      return false;
+
+    }
+
+
+    /************************************************
+     * NORMALIZE CHINESE
+     ************************************************/
+
+    function normalizeChinese(
+      value
+    ) {
+
+      return String(value || "")
+        .trim()
+        .replace(
+          /\s+/g,
+          ""
+        );
+
+    }
+
+
+    /************************************************
+     * NORMALIZE ENGLISH
+     ************************************************/
+
+    function normalizeEnglish(
+      value
+    ) {
+
+      return String(value || "")
+        .trim()
+        .toLowerCase()
+        .replace(
+          /\s+/g,
+          " "
+        );
+
+    }
+
+
+    /************************************************
+     * NORMALIZE PINYIN
+     *
+     * Chấp nhận:
+     *
+     * nǐ hǎo
+     * ni3 hao3
+     * ni hao
+     *
+     * Bỏ:
+     * - dấu thanh
+     * - số thanh
+     * - khác biệt Unicode
+     ************************************************/
+
+    function normalizePinyin(
+      value
+    ) {
+
+      let text =
+        String(value || "")
+          .trim()
+          .toLowerCase();
+
+
+      /*
+       * Normalize Unicode.
+       *
+       * Ví dụ:
+       * ǎ -> a + combining mark
+       */
+
+      text =
+        text.normalize("NFD");
+
+
+      /*
+       * Loại combining marks
+       */
+
+      text =
+        text.replace(
+          /[\u0300-\u036f]/g,
+          ""
+        );
+
+
+      /*
+       * Loại tone numbers:
+       *
+       * ni3 hao3
+       * -> ni hao
+       */
+
+      text =
+        text.replace(
+          /[1-5]/g,
+          ""
+        );
+
+
+      /*
+       * Chuẩn hóa ü
+       *
+       * ü -> u
+       *
+       * Sau NFD sẽ thường thành
+       * u + diaeresis.
+       */
+
+      text =
+        text.replace(
+          /ü/g,
+          "u"
+        );
+
+
+      /*
+       * Chuyển v thành u.
+       *
+       * Một số cách nhập Pinyin
+       * sử dụng v thay cho ü.
+       */
+
+      text =
+        text.replace(
+          /v/g,
+          "u"
+        );
+
+
+      /*
+       * Chuẩn hóa whitespace.
+       */
+
+      text =
+        text
+          .replace(
+            /\s+/g,
+            " "
+          )
+          .trim();
+
+
+      return text;
+
+    }
+
+
+    /************************************************
+     * SHOW QUESTION FEEDBACK
+     ************************************************/
+
+    function showQuestionFeedback(
+      question,
+      questionCorrect
+    ) {
+
+      const feedback =
+        $("feedback");
+
+
+      if (
+        questionCorrect
+      ) {
+
+        feedback.className =
+          "feedback show correct";
+
+
+        feedback.innerHTML = `
+          <strong>✓ Chính xác!</strong>
+          Hai phần đều đúng.
+        `;
+
+      } else {
+
+        feedback.className =
+          "feedback show wrong";
+
+
+        const wrongFields =
+          question.hidden
+            .filter(
+              field =>
+                !question.correctness[field]
+            )
+            .map(
+              field =>
+                getFieldLabel(field)
+            )
+            .join(", ");
+
+
+        feedback.innerHTML = `
+          <strong>✗ Chưa chính xác.</strong>
+          Sai: ${escapeHtml(
+            wrongFields
+          )}.
+        `;
+
+      }
+
+    }
+
+
+    /************************************************
+     * SHOW GENERIC FEEDBACK
+     ************************************************/
+
+    function showFeedback(
+      message,
+      success
+    ) {
+
+      const feedback =
+        $("feedback");
+
+
+      feedback.className =
+        "feedback show " +
+        (
+          success
+            ? "correct"
+            : "wrong"
+        );
+
+
+      feedback.innerHTML =
+        escapeHtml(message);
+
+    }
+
+
+    /************************************************
+     * NEXT QUESTION
+     ************************************************/
+
+    function nextQuestion() {
+
+      state.currentIndex++;
+
+
+      if (
+        state.currentIndex >=
+        state.total
+      ) {
+
+        finishTest();
+
+        return;
+
+      }
+
+
+      renderQuestion();
+
+    }
+
+
+    /************************************************
+     * FINISH TEST
+     ************************************************/
+
+    async function finishTest() {
+
+      if (
+        !state.testId
+      ) {
+
+        showError(
+          "Không tìm thấy mã bài kiểm tra."
+        );
+
+        return;
+
+      }
+
+
+      showLoading(
+        "Đang lưu kết quả..."
+      );
+
+
+      try {
+
+        const response =
+          await apiPost({
+
+            action:
+              "finishTest",
+
+            testId:
+              state.testId,
+
+            correct:
+              state.correctCount,
+
+            total:
+              state.total
+
+          });
+
+
+        if (
+          !response.success
+        ) {
+
+          throw new Error(
+            response.error ||
+            "Không thể lưu kết quả."
+          );
+
+        }
+
+
+        /*
+         * Hiển thị kết quả.
+         */
+
+        renderResult(
+          response
+        );
+
+
+        hideLoading();
+
+        showScreen(
+          "resultScreen"
+        );
+
+
+      } catch (error) {
+
+        hideLoading();
+
+        showError(
+          "Không thể lưu kết quả vào Record: " +
+          error.message
+        );
+
+      }
+
+    }
+
+
+    /************************************************
+     * RENDER RESULT
+     ************************************************/
+
+    function renderResult(
+      response
+    ) {
+
+      $("resultScore")
+        .textContent =
+        response.result ||
+        `${state.correctCount}/${state.total}`;
+
+
+      const resultMeta =
+        $("resultMeta");
+
+
+      resultMeta.innerHTML = "";
+
+
+      const items = [
+
+        {
+          label:
+            "Cấp độ",
+
+          value:
+            state.currentLevel
+
+        },
+
+        {
+          label:
+            "Thời gian",
+
+          value:
+            response.time ||
+            formatSeconds(
+              response.timeSeconds
+            )
+
+        },
+
+        {
+          label:
+            "Số từ",
+
+          value:
+            String(state.total)
+
+        }
+
+      ];
+
+
+      items.forEach(
+        item => {
+
+          const element =
+            document.createElement(
+              "div"
+            );
+
+
+          element.className =
+            "result-meta-item";
+
+
+          element.textContent =
+            `${item.label}: ${item.value}`;
+
+
+          resultMeta.appendChild(
+            element
+          );
+
+        }
+      );
+
+
+      renderReview();
+
+    }
+
+
+    /************************************************
+     * RENDER REVIEW
+     ************************************************/
+
+    function renderReview() {
+
+      const list =
+        $("reviewList");
+
+
+      list.innerHTML = "";
+
+
+      if (
+        state.results.length === 0
+      ) {
+
+        list.innerHTML = `
+          <div class="empty-state">
+            Không có dữ liệu review.
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      state.results.forEach(
+        (result, index) => {
+
+          const card =
+            document.createElement(
+              "div"
+            );
+
+
+          card.className =
+            "review-card";
+
+
+          const statusClass =
+            result.questionCorrect
+              ? "correct"
+              : "wrong";
+
+
+          const statusText =
+            result.questionCorrect
+              ? "✓ ĐÚNG"
+              : "✗ SAI";
+
+
+          /*
+           * Header
+           */
+
+          const header =
+            document.createElement(
+              "div"
+            );
+
+
+          header.className =
+            "review-card-header";
+
+
+          header.innerHTML = `
+            <div class="review-number">
+              Câu ${index + 1}
+            </div>
+
+            <div
+              class="review-status ${statusClass}"
+            >
+              ${statusText}
+            </div>
+          `;
+
+
+          /*
+           * Content
+           */
+
+          const content =
+            document.createElement(
+              "div"
+            );
+
+
+          content.className =
+            "review-content";
+
+
+          /*
+           * Phần đã hiển thị.
+           *
+           * KHÔNG random lại.
+           */
+
+          const shownBox =
+            document.createElement(
+              "div"
+            );
+
+
+          shownBox.className =
+            "review-shown";
+
+
+          shownBox.innerHTML = `
+            <div class="review-shown-label">
+              ${escapeHtml(
+                getFieldLabel(result.shown)
+              )} — ĐÃ HIỂN THỊ
+            </div>
+
+            <div class="review-shown-value">
+              ${escapeHtml(
+                getWordValue(
+                  result,
+                  result.shown
+                )
+              )}
+            </div>
+          `;
+
+
+          content.appendChild(
+            shownBox
+          );
+
+
+          /*
+           * Hai phần đã ẩn.
+           *
+           * Giữ nguyên thứ tự.
+           */
+
+          result.hidden.forEach(
+            field => {
+
+              const isCorrect =
+                result.correctness[field];
+
+
+              const answerBox =
+                document.createElement(
+                  "div"
+                );
+
+
+              answerBox.className =
+                "review-answer " +
+                (
+                  isCorrect
+                    ? "correct"
+                    : "wrong"
+                );
+
+
+              const userAnswer =
+                result.answers[field] ||
+                "(không nhập)";
+
+
+              const correctAnswer =
+                getWordValue(
+                  result,
+                  field
+                );
+
+
+              answerBox.innerHTML = `
+
+                <div class="review-answer-label">
+
+                  <span>
+                    ${escapeHtml(
+                      getFieldLabel(field)
+                    )}
+                  </span>
+
+                  <span>
+                    ${
+                      isCorrect
+                        ? "✓ ĐÚNG"
+                        : "✗ SAI"
+                    }
+                  </span>
+
+                </div>
+
+
+                <div class="review-user-answer">
+
+                  ${escapeHtml(
+                    userAnswer
+                  )}
+
+                </div>
+
+
+                ${
+                  isCorrect
+                    ? ""
+                    : `
+                      <div
+                        class="review-correct-answer"
+                      >
+                        Đáp án đúng:
+                        <strong>
+                          ${escapeHtml(
+                            correctAnswer
+                          )}
+                        </strong>
+                      </div>
+                    `
+                }
+
+              `;
+
+
+              content.appendChild(
+                answerBox
+              );
+
+            }
+          );
+
+
+          card.appendChild(
+            header
+          );
+
+
+          card.appendChild(
+            content
+          );
+
+
+          list.appendChild(
+            card
+          );
+
+        }
+      );
+
+    }
+
+
+    /************************************************
+     * RESET
+     ************************************************/
+
+    function resetToStart() {
+
+      state.currentLevel = "";
+
+      state.total = 0;
+
+      state.words = [];
+
+      state.currentIndex = 0;
+
+      state.correctCount = 0;
+
+      state.testId = null;
+
+      state.startedAt = null;
+
+      state.currentQuestion = null;
+
+      state.results = [];
+
+      state.confirming = false;
+
+
+      $("levelSelect").value = "";
+
+      $("countSelect").innerHTML = `
+        <option value="">
+          Chọn số lượng
+        </option>
+      `;
+
+
+      $("availableCount")
+        .textContent = "0";
+
+
+      $("startButton")
+        .disabled = true;
+
+
+      clearError();
+
+
+      showScreen(
+        "startScreen"
+      );
+
+    }
+
+
+    /************************************************
+     * SHOW SCREEN
+     ************************************************/
+
+    function showScreen(
+      screenId
+    ) {
+
+      document
+        .querySelectorAll(
+          ".screen"
+        )
+        .forEach(
+          screen => {
+
+            screen.classList.remove(
+              "active"
+            );
+
+          }
+        );
+
+
+      $(screenId)
+        .classList.add(
+          "active"
+        );
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    /************************************************
+     * LOADING
+     ************************************************/
+
+    function showLoading(
+      message
+    ) {
+
+      $("loadingText")
+        .textContent =
+        message || "Đang tải...";
+
+
+      $("loading")
+        .classList.add(
+          "active"
+        );
+
+    }
+
+
+    function hideLoading() {
+
+      $("loading")
+        .classList.remove(
+          "active"
+        );
+
+    }
+
+
+    /************************************************
+     * ERROR
+     ************************************************/
+
+    function showError(
+      message
+    ) {
+
+      const box =
+        $("errorBox");
+
+
+      box.textContent =
+        message;
+
+
+      box.classList.add(
+        "show"
+      );
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    function clearError() {
+
+      $("errorBox")
+        .classList.remove(
+          "show"
+        );
+
+
+      $("errorBox")
+        .textContent = "";
+
+    }
+
+
+    /************************************************
+     * FORMAT TIME
+     ************************************************/
+
+    function formatSeconds(
+      seconds
+    ) {
+
+      seconds =
+        Math.max(
+          0,
+          Math.floor(
+            Number(seconds) || 0
+          )
+        );
+
+
+      const hours =
+        Math.floor(
+          seconds / 3600
+        );
+
+
+      const minutes =
+        Math.floor(
+          (seconds % 3600) / 60
+        );
+
+
+      const secs =
+        seconds % 60;
+
+
+      return [
+
+        String(hours)
+          .padStart(2, "0"),
+
+        String(minutes)
+          .padStart(2, "0"),
+
+        String(secs)
+          .padStart(2, "0")
+
+      ].join(":");
+
+    }
+
+
+    /************************************************
+     * ESCAPE HTML
+     ************************************************/
+
+    function escapeHtml(
+      value
+    ) {
+
+      return String(
+        value ?? ""
+      )
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+  </script>
+
+</body>
+</html>
