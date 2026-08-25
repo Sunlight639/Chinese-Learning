@@ -11,18 +11,13 @@
   <title>Chinese Learning</title>
 
   <style>
+
     :root {
       --primary: #2563eb;
       --primary-dark: #1d4ed8;
 
       --success: #16a34a;
-      --success-bg: #ecfdf3;
-
       --danger: #dc2626;
-      --danger-bg: #fef2f2;
-
-      --warning: #d97706;
-      --warning-bg: #fffbeb;
 
       --text: #111827;
       --muted: #6b7280;
@@ -32,20 +27,20 @@
       --border: #e5e7eb;
 
       --radius: 18px;
+
       --shadow:
         0 10px 30px rgba(15, 23, 42, 0.08);
     }
+
 
     * {
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
 
     body {
       margin: 0;
+
       font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -55,33 +50,42 @@
         sans-serif;
 
       color: var(--text);
+
       background:
         linear-gradient(
           135deg,
-          #eef4ff 0%,
-          #f8fafc 50%,
-          #f1f5f9 100%
+          #eef4ff,
+          #f8fafc,
+          #f1f5f9
         );
 
       min-height: 100vh;
     }
 
+
     button,
-    input,
-    select {
+    input {
       font: inherit;
     }
+
 
     button {
       cursor: pointer;
     }
 
+
     .app {
       width: 100%;
       max-width: 900px;
+
       margin: 0 auto;
-      padding: 24px 16px 60px;
+
+      padding:
+        24px
+        16px
+        60px;
     }
+
 
     /* =========================
        HEADER
@@ -89,22 +93,29 @@
 
     .app-header {
       text-align: center;
+
       margin-bottom: 28px;
     }
+
 
     .logo {
       width: 58px;
       height: 58px;
 
-      margin: 0 auto 12px;
+      margin:
+        0
+        auto
+        12px;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
       border-radius: 16px;
 
       color: white;
+
       background:
         linear-gradient(
           135deg,
@@ -113,26 +124,28 @@
         );
 
       font-size: 27px;
-      font-weight: 800;
 
-      box-shadow:
-        0 12px 25px rgba(37, 99, 235, 0.25);
+      font-weight: 800;
     }
+
 
     .app-title {
       margin: 0;
 
       font-size: 30px;
+
       font-weight: 800;
-      letter-spacing: -0.5px;
     }
+
 
     .app-subtitle {
       margin: 7px 0 0;
 
       color: var(--muted);
+
       font-size: 15px;
     }
+
 
     /* =========================
        SCREEN
@@ -142,18 +155,22 @@
       display: none;
     }
 
+
     .screen.active {
       display: block;
     }
+
 
     /* =========================
        CARD
     ========================= */
 
     .card {
-      background: var(--card);
+      background: white;
 
-      border: 1px solid rgba(229, 231, 235, 0.9);
+      border:
+        1px solid
+        rgba(229, 231, 235, 0.9);
 
       border-radius: var(--radius);
 
@@ -162,135 +179,380 @@
       padding: 28px;
     }
 
+
     /* =========================
-       START SCREEN
+       LEVEL SCREEN
     ========================= */
 
-    .start-card {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .section-title {
+    .screen-title {
       margin: 0 0 8px;
 
-      font-size: 24px;
+      font-size: 25px;
+
       font-weight: 800;
     }
 
-    .section-description {
+
+    .screen-description {
       margin: 0 0 25px;
 
       color: var(--muted);
+
       line-height: 1.6;
     }
 
-    .form-group {
-      margin-bottom: 20px;
+
+    .level-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          auto-fill,
+          minmax(140px, 1fr)
+        );
+
+      gap: 14px;
     }
 
-    .form-label {
-      display: block;
 
-      margin-bottom: 8px;
+    .level-button {
 
-      font-size: 14px;
-      font-weight: 700;
-    }
+      min-height: 105px;
 
-    select,
-    input[type="text"] {
-      width: 100%;
+      padding: 15px;
 
-      min-height: 50px;
+      border:
+        1px solid
+        var(--border);
 
-      padding: 12px 14px;
-
-      border: 1px solid #d1d5db;
-
-      border-radius: 12px;
+      border-radius: 15px;
 
       background: white;
 
       color: var(--text);
 
-      outline: none;
+      text-align: left;
 
       transition:
-        border-color 0.2s,
-        box-shadow 0.2s;
+        transform 0.15s,
+        border-color 0.15s,
+        box-shadow 0.15s;
     }
 
-    select:focus,
-    input[type="text"]:focus {
-      border-color: var(--primary);
+
+    .level-button:hover {
+
+      transform:
+        translateY(-2px);
+
+      border-color:
+        #93c5fd;
 
       box-shadow:
-        0 0 0 3px rgba(37, 99, 235, 0.12);
+        0 8px 20px
+        rgba(37, 99, 235, 0.12);
     }
 
-    .level-info {
-      display: flex;
 
-      justify-content: space-between;
-      align-items: center;
+    .level-name {
 
-      margin-top: 9px;
+      display: block;
+
+      margin-bottom: 8px;
+
+      font-size: 21px;
+
+      font-weight: 800;
+    }
+
+
+    .level-count {
 
       color: var(--muted);
 
       font-size: 13px;
     }
 
-    .start-button {
+
+    .add-level-button {
+
+      min-height: 105px;
+
+      padding: 15px;
+
+      border:
+        2px
+        dashed
+        #93c5fd;
+
+      border-radius: 15px;
+
+      background: #eff6ff;
+
+      color: var(--primary);
+
+      font-weight: 800;
+
+      transition:
+        background 0.15s,
+        transform 0.15s;
+    }
+
+
+    .add-level-button:hover {
+
+      background: #dbeafe;
+
+      transform:
+        translateY(-2px);
+    }
+
+
+    /* =========================
+       ADD LEVEL FORM
+    ========================= */
+
+    .back-button {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 6px;
+
+      margin-bottom: 20px;
+
+      padding: 7px 0;
+
+      border: none;
+
+      background: transparent;
+
+      color: var(--primary);
+
+      font-weight: 700;
+    }
+
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+
+    .form-label {
+
+      display: block;
+
+      margin-bottom: 8px;
+
+      font-size: 14px;
+
+      font-weight: 700;
+    }
+
+
+    .text-input {
+
       width: 100%;
 
       min-height: 52px;
 
-      margin-top: 8px;
+      padding: 12px 14px;
+
+      border:
+        1px solid
+        #d1d5db;
+
+      border-radius: 12px;
+
+      outline: none;
+    }
+
+
+    .text-input:focus {
+
+      border-color:
+        var(--primary);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(
+          37,
+          99,
+          235,
+          0.12
+        );
+    }
+
+
+    .primary-button {
+
+      width: 100%;
+
+      min-height: 52px;
 
       border: none;
+
       border-radius: 13px;
+
+      color: white;
 
       background:
         linear-gradient(
           135deg,
-          var(--primary),
+          #2563eb,
           #4f46e5
         );
 
-      color: white;
-
       font-weight: 800;
+
       font-size: 16px;
-
-      transition:
-        transform 0.15s,
-        box-shadow 0.15s;
     }
 
-    .start-button:hover {
-      transform: translateY(-1px);
 
-      box-shadow:
-        0 10px 22px rgba(37, 99, 235, 0.25);
-    }
-
-    .start-button:disabled {
-      cursor: not-allowed;
+    .primary-button:disabled {
 
       opacity: 0.55;
 
-      transform: none;
-
-      box-shadow: none;
+      cursor: not-allowed;
     }
+
+
+    /* =========================
+       COUNT SCREEN
+    ========================= */
+
+    .count-card {
+
+      max-width: 600px;
+
+      margin: 0 auto;
+    }
+
+
+    .selected-level {
+
+      display: inline-flex;
+
+      padding:
+        7px
+        12px;
+
+      margin-bottom: 18px;
+
+      border-radius: 999px;
+
+      color:
+        #1d4ed8;
+
+      background:
+        #eff6ff;
+
+      font-size: 13px;
+
+      font-weight: 800;
+    }
+
+
+    .available-info {
+
+      margin-bottom: 25px;
+
+      padding: 15px;
+
+      border-radius: 12px;
+
+      background: #f8fafc;
+
+      color: #374151;
+
+      line-height: 1.5;
+    }
+
+
+    .count-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          3,
+          1fr
+        );
+
+      gap: 12px;
+
+      margin-bottom: 25px;
+    }
+
+
+    .count-button {
+
+      min-height: 55px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius: 12px;
+
+      background: white;
+
+      font-weight: 800;
+
+      color: #374151;
+
+      transition:
+        all 0.15s;
+    }
+
+
+    .count-button:hover {
+
+      border-color:
+        #93c5fd;
+
+      background:
+        #eff6ff;
+    }
+
+
+    .count-button.selected {
+
+      border-color:
+        var(--primary);
+
+      color: white;
+
+      background:
+        var(--primary);
+
+      box-shadow:
+        0 6px 15px
+        rgba(
+          37,
+          99,
+          235,
+          0.2
+        );
+    }
+
+
+    .back-row {
+
+      margin-top: 14px;
+
+      text-align: center;
+    }
+
 
     /* =========================
        LOADING
     ========================= */
 
     .loading {
+
       display: none;
 
       text-align: center;
@@ -298,60 +560,88 @@
       padding: 40px 20px;
     }
 
+
     .loading.active {
       display: block;
     }
 
+
     .spinner {
+
       width: 42px;
       height: 42px;
 
-      margin: 0 auto 15px;
+      margin:
+        0
+        auto
+        15px;
 
-      border: 4px solid #dbeafe;
+      border:
+        4px
+        solid
+        #dbeafe;
 
-      border-top-color: var(--primary);
+      border-top-color:
+        var(--primary);
 
       border-radius: 50%;
 
-      animation: spin 0.8s linear infinite;
+      animation:
+        spin
+        0.8s
+        linear
+        infinite;
     }
+
 
     @keyframes spin {
+
       to {
-        transform: rotate(360deg);
+        transform:
+          rotate(360deg);
       }
+
     }
 
+
     /* =========================
-       TEST HEADER
+       TEST
     ========================= */
 
     .test-header {
+
       display: flex;
 
       align-items: center;
-      justify-content: space-between;
 
-      gap: 16px;
+      justify-content: space-between;
 
       margin-bottom: 14px;
     }
 
+
     .test-level {
+
       font-size: 20px;
+
       font-weight: 800;
     }
 
+
     .test-progress {
+
       color: var(--muted);
 
       font-size: 14px;
+
       font-weight: 700;
     }
 
+
     .progress-bar {
+
       width: 100%;
+
       height: 8px;
 
       margin-bottom: 24px;
@@ -363,7 +653,9 @@
       background: #e5e7eb;
     }
 
+
     .progress-value {
+
       height: 100%;
 
       border-radius: inherit;
@@ -375,48 +667,51 @@
           #7c3aed
         );
 
-      transition: width 0.3s ease;
+      transition:
+        width 0.3s;
     }
 
-    /* =========================
-       QUESTION CARD
-    ========================= */
 
     .question-card {
+
       padding: 32px;
     }
 
+
     .shown-badge {
+
       display: inline-flex;
 
-      align-items: center;
-
-      min-height: 30px;
-
-      padding: 5px 11px;
+      padding:
+        6px
+        11px;
 
       margin-bottom: 25px;
 
       border-radius: 999px;
 
-      color: #1d4ed8;
+      color:
+        #1d4ed8;
 
-      background: #eff6ff;
+      background:
+        #eff6ff;
 
       font-size: 12px;
-      font-weight: 800;
 
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
+      font-weight: 800;
     }
 
+
     .shown-word {
+
       min-height: 100px;
 
       margin-bottom: 28px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
       padding: 20px;
@@ -430,36 +725,29 @@
           #eef2ff
         );
 
-      border: 1px solid #e2e8f0;
+      border:
+        1px solid
+        #e2e8f0;
 
       text-align: center;
 
       font-size: 40px;
 
       font-weight: 800;
-
-      line-height: 1.25;
-
-      word-break: break-word;
     }
 
-    .answer-area {
-      display: grid;
 
-      grid-template-columns: 1fr;
+    .answer-area {
+
+      display: grid;
 
       gap: 18px;
     }
 
-    .answer-group {
-      position: relative;
-    }
 
     .answer-label {
-      display: flex;
 
-      align-items: center;
-      justify-content: space-between;
+      display: block;
 
       margin-bottom: 8px;
 
@@ -468,41 +756,74 @@
       font-weight: 750;
     }
 
-    .answer-label-required {
-      color: var(--danger);
-
-      font-size: 11px;
-
-      font-weight: 700;
-    }
 
     .answer-input {
+
+      width: 100%;
+
       min-height: 54px;
+
+      padding:
+        12px
+        14px;
+
+      border:
+        1px
+        solid
+        #d1d5db;
+
+      border-radius: 12px;
+
+      outline: none;
 
       font-size: 16px;
     }
 
-    .answer-input.input-correct {
-      border-color: var(--success);
 
-      background: var(--success-bg);
+    .answer-input:focus {
 
-      color: #166534;
+      border-color:
+        var(--primary);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(
+          37,
+          99,
+          235,
+          0.12
+        );
     }
+
+
+    .answer-input.input-correct {
+
+      border-color:
+        var(--success);
+
+      background:
+        #ecfdf3;
+
+      color:
+        #166534;
+    }
+
 
     .answer-input.input-wrong {
-      border-color: var(--danger);
 
-      background: var(--danger-bg);
+      border-color:
+        var(--danger);
 
-      color: #991b1b;
+      background:
+        #fef2f2;
+
+      color:
+        #991b1b;
     }
 
-    .answer-input:disabled {
-      cursor: default;
-    }
 
     .confirm-button {
+
       width: 100%;
 
       min-height: 54px;
@@ -515,36 +836,17 @@
 
       color: white;
 
-      background: var(--primary);
+      background:
+        var(--primary);
 
       font-weight: 800;
 
       font-size: 16px;
-
-      transition:
-        background 0.2s,
-        transform 0.15s;
     }
 
-    .confirm-button:hover {
-      background: var(--primary-dark);
-
-      transform: translateY(-1px);
-    }
-
-    .confirm-button:disabled {
-      cursor: not-allowed;
-
-      opacity: 0.6;
-
-      transform: none;
-    }
-
-    /* =========================
-       FEEDBACK
-    ========================= */
 
     .feedback {
+
       display: none;
 
       margin-top: 18px;
@@ -552,77 +854,95 @@
       padding: 14px 16px;
 
       border-radius: 12px;
-
-      line-height: 1.6;
     }
+
 
     .feedback.show {
       display: block;
     }
 
+
     .feedback.correct {
-      color: #166534;
 
-      background: var(--success-bg);
+      color:
+        #166534;
 
-      border: 1px solid #bbf7d0;
+      background:
+        #ecfdf3;
     }
+
 
     .feedback.wrong {
-      color: #991b1b;
 
-      background: var(--danger-bg);
+      color:
+        #991b1b;
 
-      border: 1px solid #fecaca;
+      background:
+        #fef2f2;
     }
+
 
     /* =========================
        RESULT
     ========================= */
 
     .result-card {
+
       text-align: center;
 
       margin-bottom: 25px;
     }
 
+
     .result-icon {
+
       width: 74px;
       height: 74px;
 
-      margin: 0 auto 16px;
+      margin:
+        0
+        auto
+        16px;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
       border-radius: 50%;
 
-      color: #166534;
+      color:
+        #166534;
 
-      background: var(--success-bg);
+      background:
+        #ecfdf3;
 
       font-size: 34px;
     }
 
+
     .result-title {
+
       margin: 0 0 8px;
 
       font-size: 28px;
+
       font-weight: 800;
     }
 
+
     .result-score {
+
       margin: 12px 0;
 
       font-size: 48px;
 
       font-weight: 900;
-
-      letter-spacing: -1px;
     }
 
+
     .result-meta {
+
       display: flex;
 
       justify-content: center;
@@ -630,167 +950,228 @@
       flex-wrap: wrap;
 
       gap: 10px;
-
-      margin-top: 15px;
     }
 
+
     .result-meta-item {
-      padding: 9px 13px;
+
+      padding:
+        9px
+        13px;
 
       border-radius: 10px;
 
-      color: #374151;
-
-      background: #f3f4f6;
+      background:
+        #f3f4f6;
 
       font-size: 13px;
+
       font-weight: 700;
     }
+
 
     /* =========================
        REVIEW
     ========================= */
 
     .review-title {
-      margin: 0 0 16px;
+
+      margin: 0 0 10px;
 
       font-size: 22px;
+
       font-weight: 800;
     }
 
-    .review-description {
-      margin: 0 0 20px;
 
-      color: var(--muted);
+    .review-description {
+
+      margin:
+        0
+        0
+        20px;
+
+      color:
+        var(--muted);
 
       line-height: 1.6;
     }
 
+
     .review-list {
+
       display: grid;
 
       gap: 16px;
     }
 
+
     .review-card {
+
       overflow: hidden;
 
-      border: 1px solid var(--border);
+      border:
+        1px
+        solid
+        var(--border);
 
       border-radius: 16px;
 
       background: white;
     }
 
+
     .review-card-header {
+
       display: flex;
 
       align-items: center;
+
       justify-content: space-between;
 
-      padding: 14px 16px;
+      padding:
+        14px
+        16px;
 
-      background: #f8fafc;
+      background:
+        #f8fafc;
 
-      border-bottom: 1px solid var(--border);
+      border-bottom:
+        1px
+        solid
+        var(--border);
     }
 
-    .review-number {
-      font-weight: 800;
-
-      font-size: 14px;
-    }
 
     .review-status {
-      padding: 5px 9px;
 
-      border-radius: 999px;
+      padding:
+        5px
+        9px;
+
+      border-radius:
+        999px;
 
       font-size: 11px;
 
       font-weight: 800;
     }
 
-    .review-status.correct {
-      color: #166534;
 
-      background: #dcfce7;
+    .review-status.correct {
+
+      color:
+        #166534;
+
+      background:
+        #dcfce7;
     }
+
 
     .review-status.wrong {
-      color: #991b1b;
 
-      background: #fee2e2;
+      color:
+        #991b1b;
+
+      background:
+        #fee2e2;
     }
 
+
     .review-content {
+
       padding: 17px;
     }
 
+
     .review-shown {
+
       margin-bottom: 15px;
 
-      padding: 13px 14px;
+      padding:
+        13px
+        14px;
 
       border-radius: 11px;
 
-      background: #f8fafc;
+      background:
+        #f8fafc;
 
-      border: 1px solid #e2e8f0;
+      border:
+        1px
+        solid
+        #e2e8f0;
     }
 
+
     .review-shown-label {
+
       margin-bottom: 4px;
 
-      color: var(--muted);
+      color:
+        var(--muted);
 
       font-size: 11px;
 
       font-weight: 800;
-
-      text-transform: uppercase;
     }
 
+
     .review-shown-value {
+
       font-size: 21px;
 
       font-weight: 800;
-
-      word-break: break-word;
     }
 
+
     .review-answer {
+
       margin-top: 12px;
 
-      padding: 13px 14px;
+      padding:
+        13px
+        14px;
 
       border-radius: 11px;
 
-      border: 1px solid;
+      border:
+        1px
+        solid;
     }
+
 
     .review-answer.correct {
-      color: #166534;
 
-      background: var(--success-bg);
+      color:
+        #166534;
 
-      border-color: #bbf7d0;
+      background:
+        #ecfdf3;
+
+      border-color:
+        #bbf7d0;
     }
+
 
     .review-answer.wrong {
-      color: #991b1b;
 
-      background: var(--danger-bg);
+      color:
+        #991b1b;
 
-      border-color: #fecaca;
+      background:
+        #fef2f2;
+
+      border-color:
+        #fecaca;
     }
 
+
     .review-answer-label {
+
       display: flex;
 
       justify-content: space-between;
-
-      gap: 10px;
 
       margin-bottom: 7px;
 
@@ -799,7 +1180,9 @@
       font-weight: 800;
     }
 
+
     .review-user-answer {
+
       font-size: 16px;
 
       font-weight: 700;
@@ -807,21 +1190,20 @@
       word-break: break-word;
     }
 
+
     .review-correct-answer {
+
       margin-top: 7px;
 
-      color: #374151;
+      color:
+        #374151;
 
       font-size: 13px;
-
-      line-height: 1.5;
     }
 
-    .review-correct-answer strong {
-      color: #111827;
-    }
 
     .restart-button {
+
       width: 100%;
 
       min-height: 52px;
@@ -842,55 +1224,51 @@
         );
 
       font-weight: 800;
-
-      font-size: 16px;
     }
+
 
     /* =========================
        ERROR
     ========================= */
 
     .error-box {
+
       display: none;
 
       margin-bottom: 18px;
 
-      padding: 13px 15px;
+      padding:
+        13px
+        15px;
 
       border-radius: 12px;
 
-      color: #991b1b;
+      color:
+        #991b1b;
 
-      background: var(--danger-bg);
+      background:
+        #fef2f2;
 
-      border: 1px solid #fecaca;
-
-      line-height: 1.5;
-
-      font-size: 14px;
+      border:
+        1px
+        solid
+        #fecaca;
     }
+
 
     .error-box.show {
       display: block;
     }
 
-    /* =========================
-       EMPTY
-    ========================= */
-
-    .empty-state {
-      text-align: center;
-
-      padding: 35px 15px;
-
-      color: var(--muted);
-    }
 
     /* =========================
        MOBILE
     ========================= */
 
-    @media (max-width: 640px) {
+    @media (
+      max-width: 640px
+    ) {
+
       .app {
         padding:
           18px
@@ -898,42 +1276,54 @@
           40px;
       }
 
-      .app-title {
-        font-size: 26px;
-      }
 
       .card {
-        padding: 21px 17px;
+        padding:
+          21px
+          17px;
       }
 
-      .question-card {
-        padding: 21px 17px;
+
+      .level-grid {
+
+        grid-template-columns:
+          repeat(
+            2,
+            1fr
+          );
       }
+
+
+      .count-grid {
+
+        grid-template-columns:
+          repeat(
+            2,
+            1fr
+          );
+      }
+
 
       .shown-word {
-        min-height: 90px;
 
         font-size: 32px;
+
       }
 
-      .result-score {
-        font-size: 42px;
-      }
-
-      .test-header {
-        align-items: flex-start;
-      }
     }
+
   </style>
 </head>
+
 
 <body>
 
   <main class="app">
 
-    <!-- =====================
+
+    <!-- =========================
          HEADER
-    ====================== -->
+    ========================== -->
 
     <header class="app-header">
 
@@ -952,9 +1342,9 @@
     </header>
 
 
-    <!-- =====================
-         GLOBAL ERROR
-    ====================== -->
+    <!-- =========================
+         ERROR
+    ========================== -->
 
     <div
       id="errorBox"
@@ -962,25 +1352,71 @@
     ></div>
 
 
-    <!-- =====================
-         START SCREEN
-    ====================== -->
+    <!-- =====================================================
+         SCREEN 1
+         CHỌN CẤP ĐỘ
+    ====================================================== -->
 
     <section
-      id="startScreen"
+      id="levelScreen"
       class="screen active"
     >
 
-      <div class="card start-card">
+      <div class="card">
 
-        <h2 class="section-title">
-          Bắt đầu kiểm tra
+        <h2 class="screen-title">
+          Chọn cấp độ
         </h2>
 
-        <p class="section-description">
-          Chọn cấp độ và số lượng từ muốn kiểm tra.
-          Mỗi câu sẽ hiển thị một phần và yêu cầu
-          bạn tự nhớ hai phần còn lại.
+        <p class="screen-description">
+          Chọn cấp độ bạn muốn kiểm tra hoặc
+          tạo một cấp độ mới.
+        </p>
+
+
+        <div
+          id="levelGrid"
+          class="level-grid"
+        >
+
+          <!-- JS render -->
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SCREEN 2
+         THÊM CẤP ĐỘ
+    ====================================================== -->
+
+    <section
+      id="addLevelScreen"
+      class="screen"
+    >
+
+      <div class="card count-card">
+
+        <button
+          id="backToLevelButton"
+          class="back-button"
+        >
+          ← Quay lại
+        </button>
+
+
+        <h2 class="screen-title">
+          Thêm cấp độ
+        </h2>
+
+
+        <p class="screen-description">
+          Nhập tên cấp độ mới.
+          Hệ thống sẽ tạo một sheet tương ứng
+          trong Google Sheet.
         </p>
 
 
@@ -988,56 +1424,28 @@
 
           <label
             class="form-label"
-            for="levelSelect"
+            for="newLevelInput"
           >
-            Cấp độ
+            Tên cấp độ
           </label>
 
-          <select id="levelSelect">
-            <option value="">
-              Đang tải cấp độ...
-            </option>
-          </select>
 
-          <div class="level-info">
-
-            <span>
-              Số từ có sẵn
-            </span>
-
-            <strong id="availableCount">
-              0
-            </strong>
-
-          </div>
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label
-            class="form-label"
-            for="countSelect"
-          >
-            Số lượng từ kiểm tra
-          </label>
-
-          <select id="countSelect">
-            <option value="">
-              Chọn số lượng
-            </option>
-          </select>
+          <input
+            id="newLevelInput"
+            class="text-input"
+            type="text"
+            placeholder="Ví dụ: HSK0"
+            autocomplete="off"
+          />
 
         </div>
 
 
         <button
-          id="startButton"
-          class="start-button"
-          disabled
+          id="createLevelButton"
+          class="primary-button"
         >
-          BẮT ĐẦU
+          TẠO CẤP ĐỘ
         </button>
 
       </div>
@@ -1045,9 +1453,79 @@
     </section>
 
 
-    <!-- =====================
+    <!-- =====================================================
+         SCREEN 3
+         CHỌN SỐ TỪ
+    ====================================================== -->
+
+    <section
+      id="countScreen"
+      class="screen"
+    >
+
+      <div class="card count-card">
+
+        <button
+          id="backToLevelFromCount"
+          class="back-button"
+        >
+          ← Chọn lại cấp độ
+        </button>
+
+
+        <div
+          id="selectedLevel"
+          class="selected-level"
+        >
+          HSK0
+        </div>
+
+
+        <h2 class="screen-title">
+          Chọn số từ
+        </h2>
+
+
+        <p class="screen-description">
+          Chọn số lượng từ bạn muốn kiểm tra
+          trong bài này.
+        </p>
+
+
+        <div
+          id="availableInfo"
+          class="available-info"
+        >
+          Cấp độ này có
+          <strong>0</strong>
+          từ vựng.
+        </div>
+
+
+        <div
+          id="countGrid"
+          class="count-grid"
+        >
+          <!-- JS render -->
+        </div>
+
+
+        <button
+          id="startButton"
+          class="primary-button"
+          disabled
+        >
+          BẮT ĐẦU KIỂM TRA
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
          LOADING
-    ====================== -->
+    ========================== -->
 
     <div
       id="loading"
@@ -1063,9 +1541,9 @@
     </div>
 
 
-    <!-- =====================
+    <!-- =====================================================
          TEST SCREEN
-    ====================== -->
+    ====================================================== -->
 
     <section
       id="testScreen"
@@ -1080,6 +1558,7 @@
         >
           HSK0
         </div>
+
 
         <div
           id="testProgress"
@@ -1096,7 +1575,7 @@
         <div
           id="progressValue"
           class="progress-value"
-          style="width: 5%;"
+          style="width: 5%"
         ></div>
 
       </div>
@@ -1123,8 +1602,7 @@
         <div
           id="answerArea"
           class="answer-area"
-        >
-        </div>
+        ></div>
 
 
         <button
@@ -1145,9 +1623,9 @@
     </section>
 
 
-    <!-- =====================
+    <!-- =====================================================
          RESULT SCREEN
-    ====================== -->
+    ====================================================== -->
 
     <section
       id="resultScreen"
@@ -1160,9 +1638,11 @@
           ✓
         </div>
 
+
         <h2 class="result-title">
           Hoàn thành!
         </h2>
+
 
         <div
           id="resultScore"
@@ -1170,6 +1650,7 @@
         >
           0/0
         </div>
+
 
         <div
           id="resultMeta"
@@ -1185,11 +1666,12 @@
           Kiểm tra lại từ đã làm
         </h2>
 
+
         <p class="review-description">
-          Các phần màu đỏ là những phần bạn đã
-          nhập sai. Hệ thống giữ nguyên phần đã
-          ẩn ở từng câu để bạn nhớ lại chính xác
-          từ nào mình đã phải tự điền.
+          Phần màu đỏ là phần bạn đã nhập sai.
+          Hệ thống giữ nguyên phần đã ẩn ở
+          từng câu để bạn nhớ lại chính xác
+          phần mình đã phải ghi nhớ.
         </p>
 
 
@@ -1233,9 +1715,11 @@
 
       currentLevel: "",
 
-      total: 0,
+      selectedCount: 0,
 
       words: [],
+
+      total: 0,
 
       currentIndex: 0,
 
@@ -1249,7 +1733,7 @@
 
       results: [],
 
-      confirming: false
+      busy: false
 
     };
 
@@ -1258,8 +1742,9 @@
      * DOM
      ************************************************/
 
-    const $ = (id) =>
-      document.getElementById(id);
+    const $ =
+      id =>
+        document.getElementById(id);
 
 
     /************************************************
@@ -1287,10 +1772,36 @@
 
     function bindEvents() {
 
-      $("levelSelect")
+      $("backToLevelButton")
         .addEventListener(
-          "change",
-          handleLevelChange
+          "click",
+          () => {
+
+            showScreen(
+              "levelScreen"
+            );
+
+          }
+        );
+
+
+      $("backToLevelFromCount")
+        .addEventListener(
+          "click",
+          () => {
+
+            showScreen(
+              "levelScreen"
+            );
+
+          }
+        );
+
+
+      $("createLevelButton")
+        .addEventListener(
+          "click",
+          createLevel
         );
 
 
@@ -1311,7 +1822,26 @@
       $("restartButton")
         .addEventListener(
           "click",
-          resetToStart
+          resetApp
+        );
+
+
+      $("newLevelInput")
+        .addEventListener(
+          "keydown",
+          event => {
+
+            if (
+              event.key === "Enter"
+            ) {
+
+              event.preventDefault();
+
+              createLevel();
+
+            }
+
+          }
         );
 
     }
@@ -1319,31 +1849,34 @@
 
     /************************************************
      * API GET
-     *
-     * Apps Script doGet
      ************************************************/
 
-    async function apiGet(params = {}) {
+    async function apiGet(
+      params = {}
+    ) {
 
       const url =
         new URL(API_URL);
 
+
       Object.entries(params)
-        .forEach(([key, value]) => {
+        .forEach(
+          ([key, value]) => {
 
-          if (
-            value !== undefined &&
-            value !== null
-          ) {
+            if (
+              value !== undefined &&
+              value !== null
+            ) {
 
-            url.searchParams.set(
-              key,
-              value
-            );
+              url.searchParams.set(
+                key,
+                value
+              );
+
+            }
 
           }
-
-        });
+        );
 
 
       const response =
@@ -1360,7 +1893,7 @@
       if (!response.ok) {
 
         throw new Error(
-          `API GET lỗi HTTP ${response.status}`
+          `HTTP ${response.status}`
         );
 
       }
@@ -1374,10 +1907,10 @@
 
         return JSON.parse(text);
 
-      } catch (error) {
+      } catch {
 
         throw new Error(
-          "Apps Script trả về dữ liệu không hợp lệ."
+          "Apps Script trả về JSON không hợp lệ."
         );
 
       }
@@ -1387,23 +1920,17 @@
 
     /************************************************
      * API POST
-     *
-     * QUAN TRỌNG:
-     *
-     * Dùng text/plain để tránh preflight CORS.
-     *
-     * Apps Script hiện tại đã có:
-     * parseRequestData_()
-     *
-     * để JSON.parse(e.postData.contents).
      ************************************************/
 
-    async function apiPost(data) {
+    async function apiPost(
+      data
+    ) {
 
       const response =
         await fetch(
           API_URL,
           {
+
             method: "POST",
 
             redirect: "follow",
@@ -1411,12 +1938,15 @@
             cache: "no-store",
 
             headers: {
+
               "Content-Type":
                 "text/plain;charset=utf-8"
+
             },
 
             body:
               JSON.stringify(data)
+
           }
         );
 
@@ -1424,7 +1954,7 @@
       if (!response.ok) {
 
         throw new Error(
-          `API POST lỗi HTTP ${response.status}`
+          `HTTP ${response.status}`
         );
 
       }
@@ -1438,10 +1968,10 @@
 
         return JSON.parse(text);
 
-      } catch (error) {
+      } catch {
 
         throw new Error(
-          "Apps Script trả về dữ liệu không hợp lệ."
+          "Apps Script trả về JSON không hợp lệ."
         );
 
       }
@@ -1456,7 +1986,7 @@
     async function loadLevels() {
 
       showLoading(
-        "Đang tải danh sách cấp độ..."
+        "Đang tải cấp độ..."
       );
 
 
@@ -1468,7 +1998,9 @@
           });
 
 
-        if (!response.success) {
+        if (
+          !response.success
+        ) {
 
           throw new Error(
             response.error ||
@@ -1479,7 +2011,9 @@
 
 
         state.levels =
-          Array.isArray(response.levels)
+          Array.isArray(
+            response.levels
+          )
             ? response.levels
             : [];
 
@@ -1495,7 +2029,7 @@
         hideLoading();
 
         showError(
-          "Không thể kết nối Google Sheet: " +
+          "Không thể tải cấp độ: " +
           error.message
         );
 
@@ -1510,176 +2044,229 @@
 
     function renderLevels() {
 
-      const select =
-        $("levelSelect");
+      const grid =
+        $("levelGrid");
 
 
-      select.innerHTML = "";
+      grid.innerHTML = "";
 
 
-      if (
-        state.levels.length === 0
-      ) {
-
-        const option =
-          document.createElement(
-            "option"
-          );
-
-        option.value = "";
-
-        option.textContent =
-          "Chưa có cấp độ";
-
-        select.appendChild(option);
-
-        $("availableCount")
-          .textContent = "0";
-
-        $("startButton")
-          .disabled = true;
-
-        updateCountOptions(0);
-
-        return;
-
-      }
-
-
-      const placeholder =
-        document.createElement(
-          "option"
-        );
-
-      placeholder.value = "";
-
-      placeholder.textContent =
-        "Chọn cấp độ";
-
-      select.appendChild(
-        placeholder
-      );
-
+      /*
+       * Các cấp độ hiện có.
+       */
 
       state.levels.forEach(
-        (item) => {
+        item => {
 
-          const option =
+          const button =
             document.createElement(
-              "option"
+              "button"
             );
 
-          option.value =
-            item.level;
 
-          option.textContent =
-            item.level;
+          button.type =
+            "button";
 
-          select.appendChild(
-            option
+
+          button.className =
+            "level-button";
+
+
+          button.innerHTML = `
+
+            <span
+              class="level-name"
+            >
+              ${escapeHtml(
+                item.level
+              )}
+            </span>
+
+            <span
+              class="level-count"
+            >
+              ${Number(
+                item.wordCount || 0
+              )} từ
+            </span>
+
+          `;
+
+
+          button.addEventListener(
+            "click",
+            () => {
+
+              selectLevel(
+                item.level,
+                Number(
+                  item.wordCount || 0
+                )
+              );
+
+            }
+          );
+
+
+          grid.appendChild(
+            button
           );
 
         }
       );
 
 
-      select.value =
-        state.currentLevel || "";
+      /*
+       * Button thêm cấp độ.
+       */
+
+      const addButton =
+        document.createElement(
+          "button"
+        );
 
 
-      if (state.currentLevel) {
+      addButton.type =
+        "button";
 
-        handleLevelChange();
 
-      }
+      addButton.className =
+        "add-level-button";
+
+
+      addButton.innerHTML = `
+        ＋
+        <br>
+        Thêm cấp độ
+      `;
+
+
+      addButton.addEventListener(
+        "click",
+        () => {
+
+          $("newLevelInput")
+            .value = "";
+
+
+          showScreen(
+            "addLevelScreen"
+          );
+
+
+          setTimeout(
+            () => {
+
+              $("newLevelInput")
+                .focus();
+
+            },
+            100
+          );
+
+        }
+      );
+
+
+      grid.appendChild(
+        addButton
+      );
 
     }
 
 
     /************************************************
-     * LEVEL CHANGE
+     * SELECT LEVEL
      ************************************************/
 
-    function handleLevelChange() {
-
-      const level =
-        $("levelSelect").value;
-
+    function selectLevel(
+      level,
+      wordCount
+    ) {
 
       state.currentLevel =
         level;
 
 
-      const selected =
-        state.levels.find(
-          item =>
-            item.level === level
-        );
+      state.selectedCount =
+        0;
 
 
-      const count =
-        selected
-          ? Number(selected.wordCount) || 0
-          : 0;
+      $("selectedLevel")
+        .textContent =
+        level;
 
 
-      $("availableCount")
-        .textContent = count;
+      $("availableInfo")
+        .innerHTML = `
+          Cấp độ
+          <strong>
+            ${escapeHtml(level)}
+          </strong>
+          hiện có
+          <strong>
+            ${wordCount}
+          </strong>
+          từ vựng.
+        `;
 
 
-      updateCountOptions(count);
+      renderCountButtons(
+        wordCount
+      );
+
+
+      showScreen(
+        "countScreen"
+      );
 
     }
 
 
     /************************************************
-     * COUNT OPTIONS
+     * RENDER COUNT BUTTONS
      ************************************************/
 
-    function updateCountOptions(
+    function renderCountButtons(
       available
     ) {
 
-      const select =
-        $("countSelect");
+      const grid =
+        $("countGrid");
 
 
-      select.innerHTML = "";
+      grid.innerHTML = "";
 
 
-      const placeholder =
-        document.createElement(
-          "option"
-        );
+      if (
+        available <= 0
+      ) {
 
-      placeholder.value = "";
+        grid.innerHTML = `
+          <div
+            style="
+              grid-column:1/-1;
+              text-align:center;
+              color:#6b7280;
+              padding:20px;
+            "
+          >
+            Cấp độ này chưa có từ vựng.
+          </div>
+        `;
 
-      placeholder.textContent =
-        available > 0
-          ? "Chọn số lượng"
-          : "Không có từ";
-
-      select.appendChild(
-        placeholder
-      );
-
-
-      if (available <= 0) {
 
         $("startButton")
           .disabled = true;
+
 
         return;
 
       }
 
 
-      const options = [];
+      const counts = [];
 
-
-      /*
-       * Các mốc phổ biến.
-       */
 
       [
         5,
@@ -1695,7 +2282,9 @@
             number <= available
           ) {
 
-            options.push(number);
+            counts.push(
+              number
+            );
 
           }
 
@@ -1704,53 +2293,298 @@
 
 
       /*
-       * Nếu số lượng không nằm
-       * trong các mốc trên thì
-       * thêm số lượng tối đa.
+       * Nếu tổng số từ không nằm
+       * trong preset thì thêm nó.
        */
 
       if (
-        !options.includes(available)
+        !counts.includes(
+          available
+        )
       ) {
 
-        options.push(
+        counts.push(
           available
         );
 
       }
 
 
-      options
+      counts
         .sort(
           (a, b) => a - b
         )
         .forEach(
           number => {
 
-            const option =
+            const button =
               document.createElement(
-                "option"
+                "button"
               );
 
-            option.value =
+
+            button.type =
+              "button";
+
+
+            button.className =
+              "count-button";
+
+
+            button.textContent =
               number;
 
-            option.textContent =
-              number + " từ";
 
-            select.appendChild(
-              option
+            button.addEventListener(
+              "click",
+              () => {
+
+                selectCount(
+                  number
+                );
+
+              }
+            );
+
+
+            grid.appendChild(
+              button
             );
 
           }
         );
 
 
-      select.value = "";
+      $("startButton")
+        .disabled = true;
+
+    }
+
+
+    /************************************************
+     * SELECT COUNT
+     ************************************************/
+
+    function selectCount(
+      count
+    ) {
+
+      state.selectedCount =
+        count;
+
+
+      document
+        .querySelectorAll(
+          ".count-button"
+        )
+        .forEach(
+          button => {
+
+            button.classList.toggle(
+              "selected",
+              Number(
+                button.textContent
+              ) === count
+            );
+
+          }
+        );
 
 
       $("startButton")
         .disabled = false;
+
+    }
+
+
+    /************************************************
+     * CREATE LEVEL
+     ************************************************/
+
+    async function createLevel() {
+
+      if (
+        state.busy
+      ) {
+
+        return;
+
+      }
+
+
+      const input =
+        $("newLevelInput");
+
+
+      const level =
+        input.value.trim();
+
+
+      if (!level) {
+
+        showError(
+          "Vui lòng nhập tên cấp độ."
+        );
+
+        input.focus();
+
+        return;
+
+      }
+
+
+      /*
+       * Không cho ký tự xuống dòng.
+       */
+
+      if (
+        /[\r\n]/.test(level)
+      ) {
+
+        showError(
+          "Tên cấp độ không hợp lệ."
+        );
+
+        return;
+
+      }
+
+
+      /*
+       * Kiểm tra trùng ở frontend.
+       */
+
+      const exists =
+        state.levels.some(
+          item =>
+            String(
+              item.level
+            ).toLowerCase() ===
+            level.toLowerCase()
+        );
+
+
+      if (exists) {
+
+        showError(
+          "Cấp độ này đã tồn tại."
+        );
+
+        return;
+
+      }
+
+
+      state.busy = true;
+
+
+      $("createLevelButton")
+        .disabled = true;
+
+
+      clearError();
+
+
+      showLoading(
+        "Đang tạo cấp độ..."
+      );
+
+
+      try {
+
+        const response =
+          await apiPost({
+
+            action:
+              "createLevel",
+
+            level:
+              level
+
+          });
+
+
+        if (
+          !response.success
+        ) {
+
+          throw new Error(
+            response.error ||
+            "Không thể tạo cấp độ."
+          );
+
+        }
+
+
+        /*
+         * Tải lại danh sách cấp độ
+         * từ Google Sheet.
+         */
+
+        const levelsResponse =
+          await apiGet({
+            action: "levels"
+          });
+
+
+        if (
+          levelsResponse.success
+        ) {
+
+          state.levels =
+            Array.isArray(
+              levelsResponse.levels
+            )
+              ? levelsResponse.levels
+              : [];
+
+        }
+
+
+        hideLoading();
+
+
+        /*
+         * Sau khi tạo xong,
+         * chọn luôn cấp độ mới
+         * và chuyển sang bước
+         * chọn số lượng từ.
+         */
+
+        const newLevel =
+          state.levels.find(
+            item =>
+              item.level === level
+          );
+
+
+        selectLevel(
+          level,
+          newLevel
+            ? Number(
+                newLevel.wordCount || 0
+              )
+            : 0
+        );
+
+
+      } catch (error) {
+
+        hideLoading();
+
+        showError(
+          "Không thể tạo cấp độ: " +
+          error.message
+        );
+
+      } finally {
+
+        state.busy = false;
+
+        $("createLevelButton")
+          .disabled = false;
+
+      }
 
     }
 
@@ -1761,22 +2595,18 @@
 
     async function startTest() {
 
-      if (state.confirming) {
+      if (
+        state.busy
+      ) {
+
         return;
+
       }
 
 
-      const level =
-        $("levelSelect").value;
-
-
-      const total =
-        Number(
-          $("countSelect").value
-        );
-
-
-      if (!level) {
+      if (
+        !state.currentLevel
+      ) {
 
         showError(
           "Vui lòng chọn cấp độ."
@@ -1788,8 +2618,8 @@
 
 
       if (
-        !Number.isInteger(total) ||
-        total <= 0
+        !state.selectedCount ||
+        state.selectedCount <= 0
       ) {
 
         showError(
@@ -1801,14 +2631,10 @@
       }
 
 
+      state.busy = true;
+
+
       clearError();
-
-
-      state.confirming = true;
-
-
-      $("startButton")
-        .disabled = true;
 
 
       showLoading(
@@ -1819,18 +2645,22 @@
       try {
 
         /*
-         * 1.
-         * Gọi Apps Script startTest
-         *
-         * Đây là thời điểm bắt đầu
-         * tính Time.
+         * startTest được gọi
+         * NGAY trước khi bắt đầu.
          */
 
         const startResponse =
           await apiPost({
-            action: "startTest",
-            level: level,
-            total: total
+
+            action:
+              "startTest",
+
+            level:
+              state.currentLevel,
+
+            total:
+              state.selectedCount
+
           });
 
 
@@ -1840,16 +2670,11 @@
 
           throw new Error(
             startResponse.error ||
-            "Không thể bắt đầu bài kiểm tra."
+            "Không thể bắt đầu."
           );
 
         }
 
-
-        /*
-         * 2.
-         * Lưu testId
-         */
 
         state.testId =
           startResponse.testId;
@@ -1859,23 +2684,23 @@
           startResponse.startedAt;
 
 
-        state.currentLevel =
-          level;
-
-
         state.total =
-          total;
+          state.selectedCount;
 
 
         /*
-         * 3.
-         * Lấy vocabulary
+         * Lấy vocabulary.
          */
 
         const vocabResponse =
           await apiGet({
-            action: "vocabulary",
-            level: level
+
+            action:
+              "vocabulary",
+
+            level:
+              state.currentLevel
+
           });
 
 
@@ -1885,7 +2710,7 @@
 
           throw new Error(
             vocabResponse.error ||
-            "Không thể tải từ vựng."
+            "Không thể tải từ."
           );
 
         }
@@ -1900,19 +2725,19 @@
 
 
         if (
-          allWords.length < total
+          allWords.length <
+          state.total
         ) {
 
           throw new Error(
-            "Số từ thực tế không đủ để tạo bài kiểm tra."
+            "Số từ không đủ."
           );
 
         }
 
 
         /*
-         * 4.
-         * Random và lấy đúng số lượng.
+         * Random.
          */
 
         state.words =
@@ -1920,7 +2745,7 @@
             [...allWords]
           ).slice(
             0,
-            total
+            state.total
           );
 
 
@@ -1930,23 +2755,14 @@
 
         state.results = [];
 
-        state.currentQuestion =
-          null;
-
-
-        /*
-         * 5.
-         * Chuyển sang TEST
-         */
 
         hideLoading();
+
 
         showScreen(
           "testScreen"
         );
 
-
-        renderTestHeader();
 
         renderQuestion();
 
@@ -1956,18 +2772,13 @@
         hideLoading();
 
         showError(
-          "Không thể bắt đầu bài kiểm tra: " +
+          "Không thể bắt đầu: " +
           error.message
         );
 
-
-        $("startButton")
-          .disabled = false;
-
-
       } finally {
 
-        state.confirming = false;
+        state.busy = false;
 
       }
 
@@ -1978,7 +2789,9 @@
      * SHUFFLE
      ************************************************/
 
-    function shuffle(array) {
+    function shuffle(
+      array
+    ) {
 
       for (
         let i = array.length - 1;
@@ -2011,36 +2824,6 @@
 
 
     /************************************************
-     * RENDER TEST HEADER
-     ************************************************/
-
-    function renderTestHeader() {
-
-      $("testLevel")
-        .textContent =
-        state.currentLevel;
-
-
-      $("testProgress")
-        .textContent =
-        `${state.currentIndex + 1} / ${state.total}`;
-
-
-      const percent =
-        (
-          (state.currentIndex + 1) /
-          state.total
-        ) * 100;
-
-
-      $("progressValue")
-        .style.width =
-        `${percent}%`;
-
-    }
-
-
-    /************************************************
      * RENDER QUESTION
      ************************************************/
 
@@ -2061,31 +2844,28 @@
       }
 
 
-      /*
-       * Random 1 trong 3 field
-       * để HIỂN THỊ.
-       *
-       * Hai field còn lại bị ẩn.
-       */
-
-      const shownFields = [
+      const fields = [
         "chinese",
         "pinyin",
         "english"
       ];
 
 
+      /*
+       * Random phần hiển thị.
+       */
+
       const shown =
-        shownFields[
+        fields[
           Math.floor(
             Math.random() *
-            shownFields.length
+            fields.length
           )
         ];
 
 
       const hidden =
-        shownFields.filter(
+        fields.filter(
           field =>
             field !== shown
         );
@@ -2093,38 +2873,49 @@
 
       state.currentQuestion = {
 
-        word: word,
+        word,
 
-        shown: shown,
+        shown,
 
-        hidden: hidden,
+        hidden,
 
         answers: {},
 
-        correctness: {}
+        correctness: {},
+
+        questionCorrect: false
 
       };
 
 
-      /*
-       * Header
-       */
-
-      renderTestHeader();
+      $("testLevel")
+        .textContent =
+        state.currentLevel;
 
 
-      /*
-       * Badge
-       */
+      $("testProgress")
+        .textContent =
+        `${state.currentIndex + 1} / ${state.total}`;
+
+
+      $("progressValue")
+        .style.width =
+        `${
+          (
+            (
+              state.currentIndex + 1
+            ) /
+            state.total
+          ) * 100
+        }%`;
+
 
       $("shownBadge")
         .textContent =
-        `Đang hiển thị: ${getFieldLabel(shown)}`;
+        `Đang hiển thị: ${
+          getFieldLabel(shown)
+        }`;
 
-
-      /*
-       * Phần được hiển thị
-       */
 
       $("shownWord")
         .textContent =
@@ -2133,10 +2924,6 @@
           shown
         );
 
-
-      /*
-       * Tạo 2 ô nhập
-       */
 
       const answerArea =
         $("answerArea");
@@ -2154,10 +2941,6 @@
             );
 
 
-          group.className =
-            "answer-group";
-
-
           const label =
             document.createElement(
               "label"
@@ -2168,17 +2951,8 @@
             "answer-label";
 
 
-          label.innerHTML = `
-            <span>
-              ${escapeHtml(
-                getFieldLabel(field)
-              )}
-            </span>
-
-            <span class="answer-label-required">
-              BẮT BUỘC
-            </span>
-          `;
+          label.textContent =
+            getFieldLabel(field);
 
 
           const input =
@@ -2199,6 +2973,12 @@
             `answer-${field}`;
 
 
+          input.placeholder =
+            `Nhập ${
+              getFieldLabel(field)
+            }...`;
+
+
           input.autocomplete =
             "off";
 
@@ -2206,14 +2986,6 @@
           input.spellcheck =
             false;
 
-
-          input.placeholder =
-            `Nhập ${getFieldLabel(field)}...`;
-
-
-          /*
-           * Enter = xác nhận
-           */
 
           input.addEventListener(
             "keydown",
@@ -2237,6 +3009,7 @@
             label
           );
 
+
           group.appendChild(
             input
           );
@@ -2250,17 +3023,8 @@
       );
 
 
-      /*
-       * Reset button
-       */
-
       $("confirmButton")
         .disabled = false;
-
-
-      $("confirmButton")
-        .textContent =
-        "XÁC NHẬN";
 
 
       $("feedback")
@@ -2271,10 +3035,6 @@
       $("feedback")
         .innerHTML = "";
 
-
-      /*
-       * Focus ô đầu tiên
-       */
 
       const firstInput =
         answerArea.querySelector(
@@ -2295,56 +3055,13 @@
 
 
     /************************************************
-     * GET FIELD LABEL
-     ************************************************/
-
-    function getFieldLabel(
-      field
-    ) {
-
-      const labels = {
-
-        chinese:
-          "中文",
-
-        pinyin:
-          "Pinying",
-
-        english:
-          "English"
-
-      };
-
-
-      return labels[field] || field;
-
-    }
-
-
-    /************************************************
-     * GET WORD VALUE
-     ************************************************/
-
-    function getWordValue(
-      word,
-      field
-    ) {
-
-      return String(
-        word[field] || ""
-      );
-
-    }
-
-
-    /************************************************
-     * CONFIRM ANSWER
+     * CONFIRM
      ************************************************/
 
     function confirmAnswer() {
 
       if (
-        state.confirming
+        state.busy
       ) {
 
         return;
@@ -2363,12 +3080,7 @@
       }
 
 
-      /*
-       * Lấy 2 đáp án
-       */
-
       const answers = {};
-
 
       let missing = false;
 
@@ -2405,7 +3117,7 @@
       if (missing) {
 
         showFeedback(
-          "Vui lòng nhập đủ hai phần trước khi xác nhận.",
+          "Vui lòng nhập đủ hai phần.",
           false
         );
 
@@ -2414,43 +3126,30 @@
       }
 
 
-      /*
-       * Chấm từng phần.
-       */
-
       const correctness = {};
 
 
       question.hidden.forEach(
         field => {
 
-          const correctAnswer =
-            getWordValue(
-              question.word,
-              field
-            );
-
-
           correctness[field] =
             checkAnswer(
               field,
               answers[field],
-              correctAnswer
+              getWordValue(
+                question.word,
+                field
+              )
             );
 
         }
       );
 
 
-      /*
-       * Câu chỉ đúng khi
-       * CẢ HAI phần đều đúng.
-       */
-
-      const questionCorrect =
+      const correct =
         question.hidden.every(
           field =>
-            correctness[field] === true
+            correctness[field]
         );
 
 
@@ -2463,12 +3162,8 @@
 
 
       question.questionCorrect =
-        questionCorrect;
+        correct;
 
-
-      /*
-       * Lưu review.
-       */
 
       state.results.push({
 
@@ -2494,33 +3189,17 @@
           {...correctness},
 
         questionCorrect:
-          questionCorrect
+          correct
 
       });
 
 
-      if (
-        questionCorrect
-      ) {
+      if (correct) {
 
         state.correctCount++;
 
       }
 
-
-      /*
-       * Hiển thị feedback.
-       */
-
-      showQuestionFeedback(
-        question,
-        questionCorrect
-      );
-
-
-      /*
-       * Khóa input.
-       */
 
       question.hidden.forEach(
         field => {
@@ -2533,7 +3212,8 @@
 
           if (input) {
 
-            input.disabled = true;
+            input.disabled =
+              true;
 
 
             input.classList.add(
@@ -2552,33 +3232,28 @@
         .disabled = true;
 
 
-      /*
-       * Không cần bấm thêm button.
-       *
-       * Sau khoảng thời gian ngắn,
-       * tự động chuyển câu.
-       */
+      showQuestionFeedback(
+        question,
+        correct
+      );
+
 
       setTimeout(
-        () => {
-
-          nextQuestion();
-
-        },
-        1200
+        nextQuestion,
+        1000
       );
 
     }
 
 
     /************************************************
-     * CHECK ANSWER
+     * CHECK
      ************************************************/
 
     function checkAnswer(
       field,
-      userAnswer,
-      correctAnswer
+      user,
+      correct
     ) {
 
       if (
@@ -2586,10 +3261,10 @@
       ) {
 
         return normalizePinyin(
-          userAnswer
+          user
         ) ===
         normalizePinyin(
-          correctAnswer
+          correct
         );
 
       }
@@ -2600,84 +3275,27 @@
       ) {
 
         return normalizeEnglish(
-          userAnswer
+          user
         ) ===
         normalizeEnglish(
-          correctAnswer
+          correct
         );
 
       }
 
 
-      if (
-        field === "chinese"
-      ) {
-
-        return normalizeChinese(
-          userAnswer
-        ) ===
-        normalizeChinese(
-          correctAnswer
-        );
-
-      }
-
-
-      return false;
+      return normalizeChinese(
+        user
+      ) ===
+      normalizeChinese(
+        correct
+      );
 
     }
 
 
     /************************************************
-     * NORMALIZE CHINESE
-     ************************************************/
-
-    function normalizeChinese(
-      value
-    ) {
-
-      return String(value || "")
-        .trim()
-        .replace(
-          /\s+/g,
-          ""
-        );
-
-    }
-
-
-    /************************************************
-     * NORMALIZE ENGLISH
-     ************************************************/
-
-    function normalizeEnglish(
-      value
-    ) {
-
-      return String(value || "")
-        .trim()
-        .toLowerCase()
-        .replace(
-          /\s+/g,
-          " "
-        );
-
-    }
-
-
-    /************************************************
-     * NORMALIZE PINYIN
-     *
-     * Chấp nhận:
-     *
-     * nǐ hǎo
-     * ni3 hao3
-     * ni hao
-     *
-     * Bỏ:
-     * - dấu thanh
-     * - số thanh
-     * - khác biệt Unicode
+     * PINYIN
      ************************************************/
 
     function normalizePinyin(
@@ -2690,20 +3308,11 @@
           .toLowerCase();
 
 
-      /*
-       * Normalize Unicode.
-       *
-       * Ví dụ:
-       * ǎ -> a + combining mark
-       */
-
       text =
-        text.normalize("NFD");
+        text.normalize(
+          "NFD"
+        );
 
-
-      /*
-       * Loại combining marks
-       */
 
       text =
         text.replace(
@@ -2712,28 +3321,12 @@
         );
 
 
-      /*
-       * Loại tone numbers:
-       *
-       * ni3 hao3
-       * -> ni hao
-       */
-
       text =
         text.replace(
           /[1-5]/g,
           ""
         );
 
-
-      /*
-       * Chuẩn hóa ü
-       *
-       * ü -> u
-       *
-       * Sau NFD sẽ thường thành
-       * u + diaeresis.
-       */
 
       text =
         text.replace(
@@ -2742,13 +3335,6 @@
         );
 
 
-      /*
-       * Chuyển v thành u.
-       *
-       * Một số cách nhập Pinyin
-       * sử dụng v thay cho ü.
-       */
-
       text =
         text.replace(
           /v/g,
@@ -2756,49 +3342,80 @@
         );
 
 
-      /*
-       * Chuẩn hóa whitespace.
-       */
-
       text =
-        text
-          .replace(
-            /\s+/g,
-            " "
-          )
-          .trim();
+        text.replace(
+          /\s+/g,
+          " "
+        );
 
 
-      return text;
+      return text.trim();
 
     }
 
 
     /************************************************
-     * SHOW QUESTION FEEDBACK
+     * ENGLISH
+     ************************************************/
+
+    function normalizeEnglish(
+      value
+    ) {
+
+      return String(
+        value || ""
+      )
+        .trim()
+        .toLowerCase()
+        .replace(
+          /\s+/g,
+          " "
+        );
+
+    }
+
+
+    /************************************************
+     * CHINESE
+     ************************************************/
+
+    function normalizeChinese(
+      value
+    ) {
+
+      return String(
+        value || ""
+      )
+        .trim()
+        .replace(
+          /\s+/g,
+          ""
+        );
+
+    }
+
+
+    /************************************************
+     * FEEDBACK
      ************************************************/
 
     function showQuestionFeedback(
       question,
-      questionCorrect
+      correct
     ) {
 
       const feedback =
         $("feedback");
 
 
-      if (
-        questionCorrect
-      ) {
+      if (correct) {
 
         feedback.className =
           "feedback show correct";
 
 
-        feedback.innerHTML = `
-          <strong>✓ Chính xác!</strong>
-          Hai phần đều đúng.
-        `;
+        feedback.innerHTML =
+          "<strong>✓ Chính xác!</strong> Hai phần đều đúng.";
 
       } else {
 
@@ -2806,7 +3423,7 @@
           "feedback show wrong";
 
 
-        const wrongFields =
+        const wrong =
           question.hidden
             .filter(
               field =>
@@ -2819,21 +3436,14 @@
             .join(", ");
 
 
-        feedback.innerHTML = `
-          <strong>✗ Chưa chính xác.</strong>
-          Sai: ${escapeHtml(
-            wrongFields
-          )}.
-        `;
+        feedback.innerHTML =
+          `<strong>✗ Chưa chính xác.</strong>
+           Sai: ${escapeHtml(wrong)}.`;
 
       }
 
     }
 
-
-    /************************************************
-     * SHOW GENERIC FEEDBACK
-     ************************************************/
 
     function showFeedback(
       message,
@@ -2853,14 +3463,14 @@
         );
 
 
-      feedback.innerHTML =
-        escapeHtml(message);
+      feedback.textContent =
+        message;
 
     }
 
 
     /************************************************
-     * NEXT QUESTION
+     * NEXT
      ************************************************/
 
     function nextQuestion() {
@@ -2886,23 +3496,10 @@
 
 
     /************************************************
-     * FINISH TEST
+     * FINISH
      ************************************************/
 
     async function finishTest() {
-
-      if (
-        !state.testId
-      ) {
-
-        showError(
-          "Không tìm thấy mã bài kiểm tra."
-        );
-
-        return;
-
-      }
-
 
       showLoading(
         "Đang lưu kết quả..."
@@ -2941,16 +3538,13 @@
         }
 
 
-        /*
-         * Hiển thị kết quả.
-         */
-
         renderResult(
           response
         );
 
 
         hideLoading();
+
 
         showScreen(
           "resultScreen"
@@ -2962,7 +3556,7 @@
         hideLoading();
 
         showError(
-          "Không thể lưu kết quả vào Record: " +
+          "Không thể lưu kết quả: " +
           error.message
         );
 
@@ -2972,7 +3566,7 @@
 
 
     /************************************************
-     * RENDER RESULT
+     * RESULT
      ************************************************/
 
     function renderResult(
@@ -2985,67 +3579,52 @@
         `${state.correctCount}/${state.total}`;
 
 
-      const resultMeta =
+      const meta =
         $("resultMeta");
 
 
-      resultMeta.innerHTML = "";
+      meta.innerHTML = "";
 
 
-      const items = [
+      [
 
-        {
-          label:
-            "Cấp độ",
+        [
+          "Cấp độ",
+          state.currentLevel
+        ],
 
-          value:
-            state.currentLevel
+        [
+          "Số từ",
+          state.total
+        ],
 
-        },
+        [
+          "Thời gian",
+          response.time ||
+          formatSeconds(
+            response.timeSeconds
+          )
+        ]
 
-        {
-          label:
-            "Thời gian",
+      ].forEach(
+        ([label, value]) => {
 
-          value:
-            response.time ||
-            formatSeconds(
-              response.timeSeconds
-            )
-
-        },
-
-        {
-          label:
-            "Số từ",
-
-          value:
-            String(state.total)
-
-        }
-
-      ];
-
-
-      items.forEach(
-        item => {
-
-          const element =
+          const item =
             document.createElement(
               "div"
             );
 
 
-          element.className =
+          item.className =
             "result-meta-item";
 
 
-          element.textContent =
-            `${item.label}: ${item.value}`;
+          item.textContent =
+            `${label}: ${value}`;
 
 
-          resultMeta.appendChild(
-            element
+          meta.appendChild(
+            item
           );
 
         }
@@ -3058,7 +3637,7 @@
 
 
     /************************************************
-     * RENDER REVIEW
+     * REVIEW
      ************************************************/
 
     function renderReview() {
@@ -3068,21 +3647,6 @@
 
 
       list.innerHTML = "";
-
-
-      if (
-        state.results.length === 0
-      ) {
-
-        list.innerHTML = `
-          <div class="empty-state">
-            Không có dữ liệu review.
-          </div>
-        `;
-
-        return;
-
-      }
 
 
       state.results.forEach(
@@ -3098,22 +3662,6 @@
             "review-card";
 
 
-          const statusClass =
-            result.questionCorrect
-              ? "correct"
-              : "wrong";
-
-
-          const statusText =
-            result.questionCorrect
-              ? "✓ ĐÚNG"
-              : "✗ SAI";
-
-
-          /*
-           * Header
-           */
-
           const header =
             document.createElement(
               "div"
@@ -3125,21 +3673,30 @@
 
 
           header.innerHTML = `
-            <div class="review-number">
-              Câu ${index + 1}
-            </div>
 
-            <div
-              class="review-status ${statusClass}"
+            <strong>
+              Câu ${index + 1}
+            </strong>
+
+            <span
+              class="
+                review-status
+                ${
+                  result.questionCorrect
+                    ? "correct"
+                    : "wrong"
+                }
+              "
             >
-              ${statusText}
-            </div>
+              ${
+                result.questionCorrect
+                  ? "✓ ĐÚNG"
+                  : "✗ SAI"
+              }
+            </span>
+
           `;
 
-
-          /*
-           * Content
-           */
 
           const content =
             document.createElement(
@@ -3153,28 +3710,34 @@
 
           /*
            * Phần đã hiển thị.
-           *
-           * KHÔNG random lại.
            */
 
-          const shownBox =
+          const shown =
             document.createElement(
               "div"
             );
 
 
-          shownBox.className =
+          shown.className =
             "review-shown";
 
 
-          shownBox.innerHTML = `
-            <div class="review-shown-label">
+          shown.innerHTML = `
+
+            <div
+              class="review-shown-label"
+            >
               ${escapeHtml(
-                getFieldLabel(result.shown)
-              )} — ĐÃ HIỂN THỊ
+                getFieldLabel(
+                  result.shown
+                )
+              )}
+              — ĐÃ HIỂN THỊ
             </div>
 
-            <div class="review-shown-value">
+            <div
+              class="review-shown-value"
+            >
               ${escapeHtml(
                 getWordValue(
                   result,
@@ -3182,44 +3745,49 @@
                 )
               )}
             </div>
+
           `;
 
 
           content.appendChild(
-            shownBox
+            shown
           );
 
 
           /*
-           * Hai phần đã ẩn.
+           * Hai phần bị ẩn.
            *
-           * Giữ nguyên thứ tự.
+           * KHÔNG RANDOM LẠI.
            */
 
           result.hidden.forEach(
             field => {
 
-              const isCorrect =
-                result.correctness[field];
+              const correct =
+                result.correctness[
+                  field
+                ];
 
 
-              const answerBox =
+              const box =
                 document.createElement(
                   "div"
                 );
 
 
-              answerBox.className =
+              box.className =
                 "review-answer " +
                 (
-                  isCorrect
+                  correct
                     ? "correct"
                     : "wrong"
                 );
 
 
               const userAnswer =
-                result.answers[field] ||
+                result.answers[
+                  field
+                ] ||
                 "(không nhập)";
 
 
@@ -3230,19 +3798,23 @@
                 );
 
 
-              answerBox.innerHTML = `
+              box.innerHTML = `
 
-                <div class="review-answer-label">
+                <div
+                  class="review-answer-label"
+                >
 
                   <span>
                     ${escapeHtml(
-                      getFieldLabel(field)
+                      getFieldLabel(
+                        field
+                      )
                     )}
                   </span>
 
                   <span>
                     ${
-                      isCorrect
+                      correct
                         ? "✓ ĐÚNG"
                         : "✗ SAI"
                     }
@@ -3251,21 +3823,23 @@
                 </div>
 
 
-                <div class="review-user-answer">
-
+                <div
+                  class="review-user-answer"
+                >
                   ${escapeHtml(
                     userAnswer
                   )}
-
                 </div>
 
 
                 ${
-                  isCorrect
+                  correct
                     ? ""
                     : `
                       <div
-                        class="review-correct-answer"
+                        class="
+                          review-correct-answer
+                        "
                       >
                         Đáp án đúng:
                         <strong>
@@ -3281,7 +3855,7 @@
 
 
               content.appendChild(
-                answerBox
+                box
               );
 
             }
@@ -3312,13 +3886,15 @@
      * RESET
      ************************************************/
 
-    function resetToStart() {
+    function resetApp() {
 
       state.currentLevel = "";
 
-      state.total = 0;
+      state.selectedCount = 0;
 
       state.words = [];
+
+      state.total = 0;
 
       state.currentIndex = 0;
 
@@ -3332,42 +3908,33 @@
 
       state.results = [];
 
-      state.confirming = false;
-
-
-      $("levelSelect").value = "";
-
-      $("countSelect").innerHTML = `
-        <option value="">
-          Chọn số lượng
-        </option>
-      `;
-
-
-      $("availableCount")
-        .textContent = "0";
-
-
-      $("startButton")
-        .disabled = true;
+      state.busy = false;
 
 
       clearError();
 
 
       showScreen(
-        "startScreen"
+        "levelScreen"
       );
+
+
+      /*
+       * Reload để đảm bảo
+       * danh sách cấp độ mới nhất.
+       */
+
+      loadLevels();
 
     }
 
 
     /************************************************
-     * SHOW SCREEN
+     * SCREEN
      ************************************************/
 
     function showScreen(
-      screenId
+      id
     ) {
 
       document
@@ -3385,7 +3952,7 @@
         );
 
 
-      $(screenId)
+      $(id)
         .classList.add(
           "active"
         );
@@ -3409,7 +3976,7 @@
 
       $("loadingText")
         .textContent =
-        message || "Đang tải...";
+        message;
 
 
       $("loading")
@@ -3450,31 +4017,25 @@
         "show"
       );
 
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
     }
 
 
     function clearError() {
 
       $("errorBox")
-        .classList.remove(
-          "show"
-        );
+        .textContent = "";
 
 
       $("errorBox")
-        .textContent = "";
+        .classList.remove(
+          "show"
+        );
 
     }
 
 
     /************************************************
-     * FORMAT TIME
+     * TIME
      ************************************************/
 
     function formatSeconds(
@@ -3482,39 +4043,36 @@
     ) {
 
       seconds =
-        Math.max(
-          0,
-          Math.floor(
-            Number(seconds) || 0
-          )
+        Math.floor(
+          Number(seconds) || 0
         );
 
 
-      const hours =
+      const h =
         Math.floor(
           seconds / 3600
         );
 
 
-      const minutes =
+      const m =
         Math.floor(
           (seconds % 3600) / 60
         );
 
 
-      const secs =
+      const s =
         seconds % 60;
 
 
       return [
 
-        String(hours)
+        String(h)
           .padStart(2, "0"),
 
-        String(minutes)
+        String(m)
           .padStart(2, "0"),
 
-        String(secs)
+        String(s)
           .padStart(2, "0")
 
       ].join(":");
@@ -3523,7 +4081,47 @@
 
 
     /************************************************
-     * ESCAPE HTML
+     * FIELD LABEL
+     ************************************************/
+
+    function getFieldLabel(
+      field
+    ) {
+
+      return {
+
+        chinese:
+          "中文",
+
+        pinyin:
+          "Pinying",
+
+        english:
+          "English"
+
+      }[field] || field;
+
+    }
+
+
+    /************************************************
+     * WORD VALUE
+     ************************************************/
+
+    function getWordValue(
+      word,
+      field
+    ) {
+
+      return String(
+        word[field] || ""
+      );
+
+    }
+
+
+    /************************************************
+     * ESCAPE
      ************************************************/
 
     function escapeHtml(
